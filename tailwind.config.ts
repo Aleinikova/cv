@@ -17,10 +17,19 @@ const config: Config = {
         orbitron: ['"Orbitron"', 'sans-serif'],
       },
       colors: {
-        primaryRed: '#FF4D62',
+        'text-primary': '#1E1E1E',
+        primary: '#FF4D62',
+        'brand-pink': '#F679F1',
+        'brand-red': '#FF4D62',
+        'brand-green': '#097313',
+        'brand-yellow': '#FDD91F',
+        'brand-blue': '#3185FC',
       },
       spacing: {
         8: '80px',
+      },
+      opacity: {
+        '35': '.35',
       },
     },
   },
