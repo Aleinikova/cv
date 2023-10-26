@@ -20,13 +20,13 @@ interface IPiece extends IGeneralPiece {
   style?: React.CSSProperties;
 }
 
-const Piece = ({
+function Piece({
   size = 'small',
   color = 'red',
   opacity = 100,
   className,
-  style,
-}: IPiece) => {
+  style = {},
+}: IPiece) {
   return (
     <div
       className={clsx('absolute', colors[color], opacities[opacity], className)}
@@ -37,6 +37,6 @@ const Piece = ({
       }}
     />
   );
-};
+}
 
 export default Piece;

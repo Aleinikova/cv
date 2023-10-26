@@ -1,11 +1,12 @@
 'use client';
+
+import clsx from 'clsx';
 import { useEffect, useRef, useMemo, useState, useLayoutEffect } from 'react';
 import gsap from 'gsap';
 import { v4 as uuidv4 } from 'uuid';
 
-import Tetris from '../../components/TetrisPiece';
-import { PieceType, PieceColor } from '../../components/TetrisPiece/types';
-import clsx from 'clsx';
+import Tetris from '@components/TetrisPiece';
+import { PieceType, PieceColor } from '@components/TetrisPiece/types';
 
 const MAX_DELAY_SEC = 10;
 const MIN_DELAY_SEC = 0;
@@ -80,7 +81,7 @@ const ANIMATION_TO = {
   duration: 6,
 };
 
-const WelcomeAnimation = () => {
+function WelcomeAnimation() {
   const animationContainerRef = useRef<HTMLDivElement>(null);
 
   const ctx = gsap.context(() => {}, animationContainerRef);
@@ -106,26 +107,32 @@ const WelcomeAnimation = () => {
           });
         });
       }, animationContainerRef);
-
-      return () => ctx.revert();
     }
-  }, [initialPieces, isClient]);
+
+    return () => ctx.revert();
+  }, [ctx, initialPieces, isClient]);
+
+  const [iteration, setIteration] = useState(0);
 
   // adding new pieces and removing old
   useEffect(() => {
     const interval = setInterval(() => {
-      setPieces((prevState) => [
-        ...(prevState.length >= 4
-          ? prevState.slice(1, prevState.length)
-          : prevState),
-        generateTetris(10),
-      ]);
+      if (iteration < 5) {
+        setPieces((prevState) => [...prevState, generateTetris(10)]);
+        setIteration((prevState) => prevState + 1);
+      } else if (iteration === 5) {
+        // skip iteration and wait until animations end
+        setIteration((prevState) => prevState + 1);
+      } else if (iteration === 6) {
+        setIteration(0);
+        setPieces([generateTetris(20)]);
+      }
     }, 12000);
 
     return () => {
       clearInterval(interval);
     };
-  }, []);
+  }, [iteration]);
 
   // animate new dynamic pieces
   useLayoutEffect(() => {
@@ -139,14 +146,14 @@ const WelcomeAnimation = () => {
         });
       }, animationContainerRef);
     }
-  }, [pieces]);
+  }, [ctx, pieces]);
 
   // clear animation
   useEffect(
     () => () => {
       ctx.revert();
     },
-    []
+    [ctx]
   );
 
   if (!isClient) {
@@ -167,6 +174,7 @@ const WelcomeAnimation = () => {
             style={{
               left: `${piece.left}%`,
             }}
+            key={piece.className}
           />
         ))}
         {pieces.map((piecesSet) =>
@@ -181,6 +189,7 @@ const WelcomeAnimation = () => {
               style={{
                 left: `${piece.left}%`,
               }}
+              key={piece.className}
             />
           ))
         )}
@@ -242,6 +251,6 @@ const WelcomeAnimation = () => {
       <div className='absolute bottom-0 left-0 h-[25%] w-full bg-gradient-to-b from-transparent to-white' />
     </>
   );
-};
+}
 
 export default WelcomeAnimation;

@@ -1,4 +1,5 @@
 import clsx from 'clsx';
+import { v4 as uuid } from 'uuid';
 
 import { IGeneralPiece, Size, PieceType, Opacity } from './types';
 import Piece from './Piece';
@@ -190,14 +191,14 @@ interface ITetrisPiece extends IGeneralPiece {
   style?: React.CSSProperties;
   id?: string;
 }
-const TetrisPiece = ({
+function TetrisPiece({
   variant,
   size = 'small',
   color,
   className,
-  style,
+  style = {},
   id,
-}: ITetrisPiece) => {
+}: ITetrisPiece) {
   const scheme = getPieceScheme(variant, size);
 
   return (
@@ -216,11 +217,11 @@ const TetrisPiece = ({
           color={color}
           opacity={OPACITIES[i]}
           style={piece}
-          key={variant + color + i}
+          key={uuid()}
         />
       ))}
     </div>
   );
-};
+}
 
 export default TetrisPiece;
