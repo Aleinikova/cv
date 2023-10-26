@@ -77,14 +77,14 @@ const ANIMATION_FROM = {
 
 const ANIMATION_TO = {
   opacity: 0,
-  top: '100vh',
+  top: '90vh',
   duration: 6,
 };
 
 function WelcomeAnimation() {
   const animationContainerRef = useRef<HTMLDivElement>(null);
 
-  const ctx = gsap.context(() => {}, animationContainerRef);
+  const ctx = useMemo(() => gsap.context(() => {}, animationContainerRef), []);
 
   const [isClient, setIsClient] = useState(false);
 
@@ -112,27 +112,30 @@ function WelcomeAnimation() {
     return () => ctx.revert();
   }, [ctx, initialPieces, isClient]);
 
-  const [iteration, setIteration] = useState(0);
+  const iterationRef = useRef(0);
 
   // adding new pieces and removing old
   useEffect(() => {
+    let timeoutId: ReturnType<typeof setTimeout>;
+
     const interval = setInterval(() => {
-      if (iteration < 5) {
+      if (iterationRef.current < 8) {
         setPieces((prevState) => [...prevState, generateTetris(10)]);
-        setIteration((prevState) => prevState + 1);
-      } else if (iteration === 5) {
+        iterationRef.current += 1;
+      } else if (iterationRef.current === 8) {
         // skip iteration and wait until animations end
-        setIteration((prevState) => prevState + 1);
-      } else if (iteration === 6) {
-        setIteration(0);
-        setPieces([generateTetris(20)]);
+        iterationRef.current += 1;
+      } else if (iterationRef.current === 9) {
+        iterationRef.current = 0;
+        timeoutId = setTimeout(() => setPieces([generateTetris(20)]), 5000);
       }
     }, 12000);
 
     return () => {
       clearInterval(interval);
+      clearTimeout(timeoutId);
     };
-  }, [iteration]);
+  }, []);
 
   // animate new dynamic pieces
   useLayoutEffect(() => {
@@ -146,7 +149,7 @@ function WelcomeAnimation() {
         });
       }, animationContainerRef);
     }
-  }, [ctx, pieces]);
+  }, [pieces, ctx]);
 
   // clear animation
   useEffect(

@@ -14,6 +14,7 @@ module.exports = {
   },
   plugins: ['@typescript-eslint', 'react', 'prettier'],
   extends: [
+    'next',
     'airbnb',
     'airbnb/hooks',
     'plugin:@typescript-eslint/recommended',
