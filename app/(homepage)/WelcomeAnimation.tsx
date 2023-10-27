@@ -72,15 +72,16 @@ const generateTetris = (piecesNumber: number) => {
 
 const ANIMATION_FROM = {
   opacity: 1,
-  top: '-20vh',
+  transform: 'translateY(-20vh)',
 };
 
 const ANIMATION_TO = {
   opacity: 0,
-  top: '90vh',
+  transform: 'translateY(95vh)',
   duration: 6,
 };
 
+// TODO: turn off animation on window blue
 function WelcomeAnimation() {
   const animationContainerRef = useRef<HTMLDivElement>(null);
 
@@ -116,8 +117,6 @@ function WelcomeAnimation() {
 
   // adding new pieces and removing old
   useEffect(() => {
-    let timeoutId: ReturnType<typeof setTimeout>;
-
     const interval = setInterval(() => {
       if (iterationRef.current < 8) {
         setPieces((prevState) => [...prevState, generateTetris(10)]);
@@ -127,13 +126,12 @@ function WelcomeAnimation() {
         iterationRef.current += 1;
       } else if (iterationRef.current === 9) {
         iterationRef.current = 0;
-        timeoutId = setTimeout(() => setPieces([generateTetris(20)]), 5000);
+        setPieces([generateTetris(20)]);
       }
     }, 12000);
 
     return () => {
       clearInterval(interval);
-      clearTimeout(timeoutId);
     };
   }, []);
 
@@ -172,7 +170,7 @@ function WelcomeAnimation() {
             color={piece.color}
             className={clsx(
               piece.className,
-              '!absolute left-[2%] top-[-20vh] rotate-180'
+              '!absolute left-[2%] top-0 translate-y-[-20vh] rotate-180'
             )}
             style={{
               left: `${piece.left}%`,
@@ -187,7 +185,7 @@ function WelcomeAnimation() {
               color={piece.color}
               className={clsx(
                 piece.className,
-                '!absolute left-[2%] top-[-20vh] rotate-180'
+                '!absolute left-[2%] top-0 translate-y-[-20vh] rotate-180'
               )}
               style={{
                 left: `${piece.left}%`,
