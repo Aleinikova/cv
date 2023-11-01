@@ -1,10 +1,22 @@
 import type { Metadata } from 'next';
-import { Merriweather } from 'next/font/google';
+import { Merriweather, Orbitron } from 'next/font/google';
 import '../globals.css';
 
 import Header from '../../components/Header';
 
-const merriweather = Merriweather({ subsets: ['latin'], weight: ['400'] });
+const orbitron = Orbitron({
+  subsets: ['latin'],
+  weight: ['400', '500', '600', '700'],
+  variable: '--font-orbitron',
+  display: 'swap',
+});
+
+const merriweather = Merriweather({
+  subsets: ['latin'],
+  weight: ['300', '400'],
+  variable: '--font-merriweather',
+  display: 'swap',
+});
 
 export const metadata: Metadata = {
   title: 'Create Next App',
@@ -17,8 +29,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang='en'>
-      <body className={merriweather.className}>
+    <html lang='en' className={`${merriweather.variable} ${orbitron.variable}`}>
+      <body className='font-primary'>
         <Header />
         {children}
       </body>

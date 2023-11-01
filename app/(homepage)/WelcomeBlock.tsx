@@ -4,8 +4,8 @@ function WelcomeBlock() {
   return (
     <section className='flex h-[calc(100vh_-_84px)]'>
       {/* 84px header height */}
-      <div className='relative top-1/3 z-10 max-w-3xl'>
-        <h1 className='font-orbitron  text-5xl font-bold leading-normal text-text-primary'>
+      <div className='relative top-1/3 z-10 h-[150px] max-w-3xl'>
+        <h1 className='font-secondary  text-5xl font-bold leading-normal text-text-primary'>
           Hello, my name is <span className='text-brand-pink'>Valeria</span>
           <br />
           I’m a <span className='text-primary'>Frontend</span> developer

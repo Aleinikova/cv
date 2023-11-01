@@ -14,11 +14,13 @@ const config: Config = {
           'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
       },
       fontFamily: {
-        orbitron: ['"Orbitron"', 'sans-serif'],
+        primary: ['var(--font-merriweather)'],
+        secondary: ['var(--font-orbitron)'],
       },
       colors: {
         'text-primary': '#1E1E1E',
         primary: '#FF4D62',
+        secondary: '#3185FC',
         'brand-pink': '#F679F1',
         'brand-red': '#FF4D62',
         'brand-green': '#097313',
