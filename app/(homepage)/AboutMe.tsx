@@ -3,7 +3,7 @@ import Image from 'next/image';
 
 function AboutMe() {
   return (
-    <section className='section flex w-full flex-col px-5'>
+    <section className='section flex w-full flex-col px-8'>
       <Headline className='mb-28' component='h2'>
         About me
       </Headline>

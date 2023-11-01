@@ -29,9 +29,13 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang='en' className={`${merriweather.variable} ${orbitron.variable}`}>
-      <body className='font-primary'>
+    <html
+      lang='en'
+      className={`${merriweather.variable} ${orbitron.variable} w-full`}
+    >
+      <body className='font-primary flex flex-col'>
         <Header />
+
         {children}
       </body>
     </html>

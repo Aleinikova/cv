@@ -33,6 +33,9 @@ const config: Config = {
       opacity: {
         '35': '.35',
       },
+      maxWidth: {
+        'max-w-8xl': '1360px',
+      },
     },
   },
   plugins: [],
