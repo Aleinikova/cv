@@ -1,5 +1,5 @@
 export interface IGeneralPiece {
-  size?: 'small' | 'medium';
+  size?: PieceSize;
   color?: PieceColor;
   className?: string;
 }
@@ -8,9 +8,12 @@ export interface IGeneralPiece {
 export enum Size {
   small = 24,
   medium = 64,
+  large = 120,
 }
 
 export type Opacity = 100 | 75 | 50 | 35;
+
+export type PieceSize = 'small' | 'medium' | 'large';
 
 export type PieceType = 'T' | 'I' | 'O' | 'L' | 'J' | 'Z' | 'S';
 

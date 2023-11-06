@@ -1,11 +1,11 @@
 import clsx from 'clsx';
 import { v4 as uuid } from 'uuid';
 
-import { IGeneralPiece, Size, PieceType, Opacity } from './types';
+import { IGeneralPiece, Size, PieceType, PieceSize, Opacity } from './types';
 import Piece from './Piece';
 
 const OPACITIES: Opacity[] = [100, 75, 50, 35];
-const getPieceScheme = (variant: PieceType, size: 'small' | 'medium') => {
+const getPieceScheme = (variant: PieceType, size: PieceSize) => {
   switch (variant) {
     case 'T': {
       return {
