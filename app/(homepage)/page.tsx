@@ -1,5 +1,6 @@
 import AboutMe from './AboutMe';
 import Projects from './Projects';
+import Technologies from './Technologies';
 import WelcomeBlock from './WelcomeBlock';
 
 export default function Home() {
@@ -8,6 +9,7 @@ export default function Home() {
       <WelcomeBlock />
       <AboutMe />
       <Projects />
+      <Technologies />
     </main>
   );
 }
