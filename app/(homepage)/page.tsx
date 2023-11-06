@@ -1,4 +1,5 @@
 import AboutMe from './AboutMe';
+import Contacts from './Contacts';
 import Projects from './Projects';
 import Technologies from './Technologies';
 import WelcomeBlock from './WelcomeBlock';
@@ -10,6 +11,7 @@ export default function Home() {
       <AboutMe />
       <Projects />
       <Technologies />
+      <Contacts />
     </main>
   );
 }

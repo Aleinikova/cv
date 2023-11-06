@@ -9,7 +9,7 @@ function AboutMe() {
       </Headline>
       <div className='flex w-full items-center justify-between'>
         <div className='relative flex flex-shrink-0'>
-          <div className='border-secondary absolute -left-6 -top-6 -z-10 h-[445px] w-[320px] border-2 border-solid content-[""]' />
+          <div className='absolute -left-6 -top-6 -z-10 h-[445px] w-[320px] border-2 border-solid border-secondary content-[""]' />
           <Image
             src='/author.png'
             alt='Picture of the author'
