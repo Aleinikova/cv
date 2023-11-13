@@ -2,7 +2,7 @@ import Nav from './Nav';
 
 function Header() {
   return (
-    <header className='flex w-full px-8 py-6'>
+    <header className='z-20 flex w-full px-8 py-6'>
       <Nav className='ml-auto' />
     </header>
   );

@@ -2,9 +2,9 @@ import WelcomeAnimation from './WelcomeAnimation';
 
 function WelcomeBlock() {
   return (
-    <section className='flex h-[calc(100vh_-_84px)]'>
+    <section className='relative flex h-[calc(100vh_-_84px)] w-full items-center justify-center'>
       {/* 84px header height */}
-      <div className='relative top-1/3 z-10 h-[150px] max-w-3xl'>
+      <div className='relative -top-[10%] z-10 h-[150px] max-w-3xl'>
         <h1 className='font-secondary  text-5xl font-bold leading-normal text-text-primary'>
           Hello, my name is <span className='text-brand-pink'>Valeria</span>
           <br />
