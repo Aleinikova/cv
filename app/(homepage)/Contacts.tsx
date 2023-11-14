@@ -35,9 +35,12 @@ interface IContact {
 
 function Contacts() {
   return (
-    <section className='section flex w-full flex-col'>
+    <section
+      className='section flex min-h-[500px] w-full flex-col'
+      id='contacts'
+    >
       <Headline className='mb-28' component='h2'>
-        About me
+        Contacts
       </Headline>
       <div className='flex w-full items-center justify-between'>
         <ul className='flex w-full flex-wrap'>

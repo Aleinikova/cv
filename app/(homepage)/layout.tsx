@@ -1,8 +1,9 @@
 import type { Metadata } from 'next';
 import { Merriweather, Orbitron } from 'next/font/google';
-import '../globals.css';
 
 import Header from '../../components/Header';
+
+import '../globals.css';
 
 const orbitron = Orbitron({
   subsets: ['latin'],

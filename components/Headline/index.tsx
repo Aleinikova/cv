@@ -12,7 +12,7 @@ function Headline({ children, className, component }: IHeadline) {
   return (
     <Tag
       className={clsx(
-        'font-secondary relative text-center text-4xl font-bold before:absolute  before:-bottom-2 before:left-1/2 before:h-[4px]  before:w-[68%]  before:max-w-[150px] before:-translate-x-1/2 before:bg-primary before:content-[""]',
+        'relative text-center font-secondary text-4xl font-bold before:absolute before:-bottom-3 before:left-1/2 before:h-[4px] before:w-[68%] before:max-w-[150px] before:-translate-x-1/2 before:bg-primary before:content-[""]',
         className
       )}
     >

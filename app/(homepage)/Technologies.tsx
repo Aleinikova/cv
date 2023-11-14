@@ -31,7 +31,7 @@ const TOOLS = [
 
 function Technologies() {
   return (
-    <section className='section flex w-full flex-col'>
+    <section className='section flex w-full flex-col' id='technologies'>
       <Headline className='mb-28' component='h2'>
         Technologies
       </Headline>

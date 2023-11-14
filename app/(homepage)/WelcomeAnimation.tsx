@@ -30,7 +30,7 @@ function WelcomeAnimation() {
           },
           {
             opacity: 0,
-            transform: 'translateY(95vh)',
+            transform: 'translateY(100vh)',
             rotate: 180,
             duration: 6,
             repeat: -1,
@@ -46,7 +46,7 @@ function WelcomeAnimation() {
           },
           {
             opacity: 0,
-            transform: 'translateY(95vh)',
+            transform: 'translateY(100vh)',
             rotate: -90,
             delay: 3,
             duration: 6,
@@ -62,7 +62,7 @@ function WelcomeAnimation() {
           },
           {
             opacity: 0,
-            transform: 'translateY(95vh)',
+            transform: 'translateY(100vh)',
             delay: 1.2,
             duration: 6,
             repeat: -1,
@@ -77,7 +77,7 @@ function WelcomeAnimation() {
           },
           {
             opacity: 0,
-            transform: 'translateY(95vh)',
+            transform: 'translateY(100vh)',
             delay: 2,
             duration: 6,
             repeat: -1,
@@ -92,7 +92,7 @@ function WelcomeAnimation() {
           },
           {
             opacity: 0,
-            transform: 'translateY(95vh)',
+            transform: 'translateY(100vh)',
             delay: 0.2,
             duration: 6,
             repeat: -1,
@@ -108,7 +108,7 @@ function WelcomeAnimation() {
           },
           {
             opacity: 0,
-            transform: 'translateY(95vh)',
+            transform: 'translateY(100vh)',
             rotate: 90,
             delay: 3.2,
             duration: 6,
@@ -124,7 +124,7 @@ function WelcomeAnimation() {
           },
           {
             opacity: 0,
-            transform: 'translateY(95vh)',
+            transform: 'translateY(100vh)',
             delay: 1.3,
             duration: 6,
             repeat: -1,
@@ -139,7 +139,7 @@ function WelcomeAnimation() {
           },
           {
             opacity: 0,
-            transform: 'translateY(95vh)',
+            transform: 'translateY(100vh)',
             delay: 3.6,
             duration: 6,
             repeat: -1,
@@ -155,7 +155,7 @@ function WelcomeAnimation() {
           },
           {
             opacity: 0,
-            transform: 'translateY(95vh)',
+            transform: 'translateY(100vh)',
             delay: 0.6,
             rotate: 90,
             duration: 6,
@@ -182,7 +182,7 @@ function WelcomeAnimation() {
 
   return (
     <>
-      <div className='absolute left-0 top-[-84px] z-10 h-[15%] w-full bg-gradient-to-b from-white to-transparent' />
+      <div className='absolute left-0 top-0 z-10 h-[15%] w-full bg-gradient-to-b from-white to-transparent' />
       <div ref={animationContainerRef}>
         <Tetris
           variant='L'
