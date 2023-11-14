@@ -7,7 +7,7 @@ import gsap from 'gsap';
 import Tetris from '@components/TetrisPiece';
 
 // TODO: turn off animation on window blue
-function WelcomeAnimation() {
+function AnimatedBackground() {
   const animationContainerRef = useRef<HTMLDivElement>(null);
 
   const ctx = useMemo(() => gsap.context(() => {}, animationContainerRef), []);
@@ -262,4 +262,4 @@ function WelcomeAnimation() {
   );
 }
 
-export default WelcomeAnimation;
+export default AnimatedBackground;

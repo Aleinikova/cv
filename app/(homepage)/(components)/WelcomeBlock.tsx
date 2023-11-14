@@ -1,4 +1,4 @@
-import WelcomeAnimation from './WelcomeAnimation';
+import AnimatedBackground from '@components/AnimatedBackground';
 
 function WelcomeBlock() {
   return (
@@ -11,7 +11,7 @@ function WelcomeBlock() {
           I’m a <span className='text-primary'>Frontend</span> developer
         </h1>
       </div>
-      <WelcomeAnimation />
+      <AnimatedBackground />
     </section>
   );
 }
