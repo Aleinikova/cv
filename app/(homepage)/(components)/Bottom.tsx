@@ -3,7 +3,7 @@ import TetrisPiece from '@components/TetrisPiece';
 function Bottom() {
   return (
     <div
-      className='relative m-auto h-[480px] w-full max-w-[1440px] overflow-hidden'
+      className='relative m-auto h-[760px] w-full max-w-[1440px] overflow-hidden pt-60'
       id='bottom'
     >
       <TetrisPiece

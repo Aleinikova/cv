@@ -28,7 +28,8 @@ function AboutMe() {
           </p>
 
           <p className='max-w-[500px] text-base leading-6'>
-            I’m an experienced Frontend developer with 6 years of expertise.
+            I’m an Frontend developer with 6 years of expertise.
+            <br />
             <br />
             Have a strong background in both independent project work and
             collaborative work in a team. I always treat my projects with

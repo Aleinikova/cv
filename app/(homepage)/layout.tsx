@@ -3,7 +3,6 @@ import { Merriweather, Orbitron } from 'next/font/google';
 
 import Scroller from '@components/Scroller';
 import Header from '../../components/Header';
-import Footer from './(components)/Footer';
 
 import '../globals.css';
 
@@ -34,14 +33,13 @@ export default function RootLayout({
   return (
     <html
       lang='en'
-      className={`${merriweather.variable} ${orbitron.variable} w-full`}
+      className={`${merriweather.variable} ${orbitron.variable} w-full bg-gradient-to-b from-[#16161d] via-[#1f1f3a] to-[#3b2f4a]`}
     >
       <body className='flex flex-col font-primary'>
         <Scroller>
           <Header />
 
           {children}
-          <Footer />
         </Scroller>
       </body>
     </html>

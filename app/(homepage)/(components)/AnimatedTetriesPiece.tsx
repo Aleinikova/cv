@@ -175,7 +175,8 @@ export default function AnimatedTetriesPiece({ ctx }: IAnimatedTetriesPiece) {
               scrollTrigger: {
                 trigger: '#projects',
                 start: 'top+=150px',
-                end: `bottom`,
+                end: () =>
+                  `bottom-=${+gsap.getProperty('#projects', 'height') / 4}`,
                 scrub: 1,
               },
               y: () =>
@@ -211,33 +212,11 @@ export default function AnimatedTetriesPiece({ ctx }: IAnimatedTetriesPiece) {
                 trigger: '#technologies',
                 // start: () =>
                 //   `start-=${+gsap.getProperty('#technologies', 'height') / 2}`,
-                start: 'top',
-                end: `bottom`,
+                start: () =>
+                  `top-=${+gsap.getProperty('#projects', 'height') / 4}`,
+                end: () =>
+                  `bottom+=${+gsap.getProperty('#contacts', 'height')}`,
                 scrub: 1,
-              },
-              y: () =>
-                window.innerHeight * 0.5 +
-                +gsap.getProperty('#aboutMe', 'height') * 1.5 +
-                (+gsap.getProperty('#mainTetrisPiece', 'height') * 2.56 -
-                  +gsap.getProperty('#mainTetrisPiece', 'height')) /
-                  2 +
-                +gsap.getProperty('.projects-list', 'offsetTop') +
-                +gsap.getProperty('#projects', 'height') +
-                +gsap.getProperty('#technologies', 'height'),
-              x: 0,
-              rotation: 90,
-            },
-            '>'
-          )
-          .to(
-            '#mainTetrisPiece',
-            {
-              scrollTrigger: {
-                trigger: '#contacts',
-                start: (self) => self.previous().end,
-                end: `bottom`,
-                scrub: 1,
-                markers: true,
               },
               y: () =>
                 window.innerHeight * 0.5 +
@@ -249,11 +228,36 @@ export default function AnimatedTetriesPiece({ ctx }: IAnimatedTetriesPiece) {
                 +gsap.getProperty('#projects', 'height') +
                 +gsap.getProperty('#technologies', 'height') +
                 +gsap.getProperty('#contacts', 'height'),
-
-              scale: 1.2056,
+              x: 0,
+              rotation: 90,
             },
-            '<'
+            '>'
           );
+        // .to(
+        //   '#mainTetrisPiece',
+        //   {
+        //     scrollTrigger: {
+        //       trigger: '#contacts',
+        //       start: (self) => self.previous().end,
+        //       end: `bottom`,
+        //       scrub: 1,
+        //       markers: true,
+        //     },
+        //     y: () =>
+        //       window.innerHeight * 0.5 +
+        //       +gsap.getProperty('#aboutMe', 'height') * 1.5 +
+        //       (+gsap.getProperty('#mainTetrisPiece', 'height') * 2.56 -
+        //         +gsap.getProperty('#mainTetrisPiece', 'height')) /
+        //         2 +
+        //       +gsap.getProperty('.projects-list', 'offsetTop') +
+        //       +gsap.getProperty('#projects', 'height') +
+        //       +gsap.getProperty('#technologies', 'height') +
+        //       +gsap.getProperty('#contacts', 'height'),
+
+        //     scale: 1.2056,
+        //   },
+        //   '<'
+        // );
         // .to(
         //   '#mainTetrisPiece',
         //   {
@@ -279,6 +283,19 @@ export default function AnimatedTetriesPiece({ ctx }: IAnimatedTetriesPiece) {
         //   },
         //   '>'
         // );
+
+        gsap.to('#main', {
+          scrollTrigger: {
+            trigger: '#bottom',
+            start: 'top',
+            end: `bottom`,
+            scrub: 1,
+            pin: '#main',
+            markers: true,
+          },
+          scale: 0.4,
+          y: () => 2700,
+        });
       });
     }
 
