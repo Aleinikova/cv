@@ -3,6 +3,7 @@ import EmailSvg from '@components/Icons/Email';
 import GitHubSvg from '@components/Icons/GitHub';
 import LinkedinSvg from '@components/Icons/Linkedin';
 import UpworkSvg from '@components/Icons/Upwork';
+import React from 'react';
 
 const CONTACTS = [
   {
@@ -33,34 +34,33 @@ interface IContact {
   Icon: React.ElementType;
 }
 
-function Contacts() {
-  return (
-    <section
-      className='section flex min-h-[500px] w-full flex-col'
-      id='contacts'
-    >
-      <Headline className='mb-28' component='h2'>
-        Contacts
-      </Headline>
-      <div className='flex w-full items-center justify-between'>
-        <ul className='flex w-full flex-wrap'>
-          {CONTACTS.map((contact: IContact) => (
-            <li className='mb-4 w-2/4' key={contact.title}>
-              <a
-                className='flex w-fit items-center'
-                href={contact.link}
-                target='_blank'
-                rel='noopener noreferrer'
-              >
-                <contact.Icon className='mr-3 text-brand-blue' />
-                <span className='font-secondary text-2xl'>{contact.title}</span>
-              </a>
-            </li>
-          ))}
-        </ul>
-      </div>
-    </section>
-  );
-}
+const Contacts = React.forwardRef<HTMLElement>((_, ref) => (
+  <section
+    className='section flex min-h-[500px] w-full flex-col'
+    id='contacts'
+    ref={ref}
+  >
+    <Headline className='mb-28' component='h2'>
+      Contacts
+    </Headline>
+    <div className='flex w-full items-center justify-between'>
+      <ul className='flex w-full flex-wrap'>
+        {CONTACTS.map((contact: IContact) => (
+          <li className='mb-4 w-2/4' key={contact.title}>
+            <a
+              className='flex w-fit items-center'
+              href={contact.link}
+              target='_blank'
+              rel='noopener noreferrer'
+            >
+              <contact.Icon className='mr-3 text-brand-blue' />
+              <span className='font-secondary text-2xl'>{contact.title}</span>
+            </a>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+));
 
 export default Contacts;

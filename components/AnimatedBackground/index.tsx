@@ -6,11 +6,155 @@ import gsap from 'gsap';
 
 import Tetris from '@components/TetrisPiece';
 
-// TODO: turn off animation on window blue
+const initFallingPiecesAnimation = (tl: ReturnType<typeof gsap.timeline>) => {
+  tl.fromTo(
+    '.tetris-1',
+    {
+      opacity: 1,
+      transform: 'translateY(-20vh)',
+      rotate: 180,
+    },
+    {
+      opacity: 0,
+      transform: 'translateY(100vh)',
+      rotate: 180,
+      duration: 6,
+      repeat: -1,
+    }
+  );
+
+  tl.fromTo(
+    '.tetris-2',
+    {
+      opacity: 1,
+      transform: 'translateY(-20vh)',
+      rotate: -90,
+    },
+    {
+      opacity: 0,
+      transform: 'translateY(100vh)',
+      rotate: -90,
+      duration: 6,
+      repeat: -1,
+    },
+    3
+  );
+
+  tl.fromTo(
+    '.tetris-3',
+    {
+      opacity: 1,
+      transform: 'translateY(-20vh)',
+    },
+    {
+      opacity: 0,
+      transform: 'translateY(100vh)',
+      duration: 6,
+      repeat: -1,
+    },
+    1.2
+  );
+
+  tl.fromTo(
+    '.tetris-4',
+    {
+      opacity: 1,
+      transform: 'translateY(-20vh)',
+    },
+    {
+      opacity: 0,
+      transform: 'translateY(100vh)',
+      duration: 6,
+      repeat: -1,
+    },
+    2
+  );
+
+  tl.fromTo(
+    '.tetris-5',
+    {
+      opacity: 1,
+      transform: 'translateY(-20vh)',
+    },
+    {
+      opacity: 0,
+      transform: 'translateY(100vh)',
+      duration: 6,
+      repeat: -1,
+    },
+    0.2
+  );
+
+  tl.fromTo(
+    '.tetris-6',
+    {
+      opacity: 1,
+      transform: 'translateY(-20vh)',
+      rotate: 90,
+    },
+    {
+      opacity: 0,
+      transform: 'translateY(100vh)',
+      rotate: 90,
+      duration: 6,
+      repeat: -1,
+    },
+    3.2
+  );
+
+  tl.fromTo(
+    '.tetris-7',
+    {
+      opacity: 1,
+      transform: 'translateY(-20vh)',
+    },
+    {
+      opacity: 0,
+      transform: 'translateY(100vh)',
+      duration: 6,
+      repeat: -1,
+    },
+    1.3
+  );
+
+  tl.fromTo(
+    '.tetris-8',
+    {
+      opacity: 1,
+      transform: 'translateY(-20vh)',
+    },
+    {
+      opacity: 0,
+      transform: 'translateY(100vh)',
+      duration: 6,
+      repeat: -1,
+    },
+    3.6
+  );
+
+  tl.fromTo(
+    '.tetris-9',
+    {
+      opacity: 1,
+      transform: 'translateY(-20vh)',
+      rotate: 90,
+    },
+    {
+      opacity: 0,
+      transform: 'translateY(100vh)',
+      rotate: 90,
+      duration: 6,
+      repeat: -1,
+    },
+    0.6
+  );
+};
+
 function AnimatedBackground() {
   const animationContainerRef = useRef<HTMLDivElement>(null);
 
   const ctx = useMemo(() => gsap.context(() => {}, animationContainerRef), []);
+  const animationTimeline = useRef<ReturnType<typeof gsap.timeline>>();
 
   const [isClient, setIsClient] = useState(false);
 
@@ -19,151 +163,11 @@ function AnimatedBackground() {
   }, []);
 
   useLayoutEffect(() => {
-    if (isClient) {
-      ctx.add(() => {
-        gsap.fromTo(
-          '.tetris-1',
-          {
-            opacity: 1,
-            transform: 'translateY(-20vh)',
-            rotate: 180,
-          },
-          {
-            opacity: 0,
-            transform: 'translateY(100vh)',
-            rotate: 180,
-            duration: 6,
-            repeat: -1,
-          }
-        );
+    ctx.add(() => {
+      animationTimeline.current = gsap.timeline({ repeat: -1 });
 
-        gsap.fromTo(
-          '.tetris-2',
-          {
-            opacity: 1,
-            transform: 'translateY(-20vh)',
-            rotate: -90,
-          },
-          {
-            opacity: 0,
-            transform: 'translateY(100vh)',
-            rotate: -90,
-            delay: 3,
-            duration: 6,
-            repeat: -1,
-          }
-        );
-
-        gsap.fromTo(
-          '.tetris-3',
-          {
-            opacity: 1,
-            transform: 'translateY(-20vh)',
-          },
-          {
-            opacity: 0,
-            transform: 'translateY(100vh)',
-            delay: 1.2,
-            duration: 6,
-            repeat: -1,
-          }
-        );
-
-        gsap.fromTo(
-          '.tetris-4',
-          {
-            opacity: 1,
-            transform: 'translateY(-20vh)',
-          },
-          {
-            opacity: 0,
-            transform: 'translateY(100vh)',
-            delay: 2,
-            duration: 6,
-            repeat: -1,
-          }
-        );
-
-        gsap.fromTo(
-          '.tetris-5',
-          {
-            opacity: 1,
-            transform: 'translateY(-20vh)',
-          },
-          {
-            opacity: 0,
-            transform: 'translateY(100vh)',
-            delay: 0.2,
-            duration: 6,
-            repeat: -1,
-          }
-        );
-
-        gsap.fromTo(
-          '.tetris-6',
-          {
-            opacity: 1,
-            transform: 'translateY(-20vh)',
-            rotate: 90,
-          },
-          {
-            opacity: 0,
-            transform: 'translateY(100vh)',
-            rotate: 90,
-            delay: 3.2,
-            duration: 6,
-            repeat: -1,
-          }
-        );
-
-        gsap.fromTo(
-          '.tetris-7',
-          {
-            opacity: 1,
-            transform: 'translateY(-20vh)',
-          },
-          {
-            opacity: 0,
-            transform: 'translateY(100vh)',
-            delay: 1.3,
-            duration: 6,
-            repeat: -1,
-          }
-        );
-
-        gsap.fromTo(
-          '.tetris-8',
-          {
-            opacity: 1,
-            transform: 'translateY(-20vh)',
-          },
-          {
-            opacity: 0,
-            transform: 'translateY(100vh)',
-            delay: 3.6,
-            duration: 6,
-            repeat: -1,
-          }
-        );
-
-        gsap.fromTo(
-          '.tetris-9',
-          {
-            opacity: 1,
-            transform: 'translateY(-20vh)',
-            rotate: 90,
-          },
-          {
-            opacity: 0,
-            transform: 'translateY(100vh)',
-            delay: 0.6,
-            rotate: 90,
-            duration: 6,
-            repeat: -1,
-          }
-        );
-      }, animationContainerRef);
-    }
+      initFallingPiecesAnimation(animationTimeline.current);
+    }, animationContainerRef);
 
     return () => ctx.revert();
   }, [ctx, isClient]);

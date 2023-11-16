@@ -1,5 +1,5 @@
 import clsx from 'clsx';
-import { useRef } from 'react';
+import React, { useRef } from 'react';
 
 import Headline from '@components/Headline';
 
@@ -85,13 +85,14 @@ function Project({ className, title, startDate, endDate, stack }: IProject) {
   );
 }
 
-function Projects() {
+const Projects = React.forwardRef<HTMLElement>((_, forwardRef) => {
   const ref = useRef(null);
 
   return (
     <section
       className='section relative z-10 flex w-full flex-col'
       id='projects'
+      ref={forwardRef}
     >
       <Headline className='mb-28' component='h2'>
         Projects
@@ -106,6 +107,6 @@ function Projects() {
       </ul>
     </section>
   );
-}
+});
 
 export default Projects;

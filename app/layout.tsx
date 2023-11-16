@@ -2,9 +2,8 @@ import type { Metadata } from 'next';
 import { Merriweather, Orbitron } from 'next/font/google';
 
 // import Scroller from '@components/Scroller';
-import Header from '../../components/Header';
 
-import '../globals.css';
+import './globals.css';
 
 const orbitron = Orbitron({
   subsets: ['latin'],
@@ -37,7 +36,6 @@ export default function RootLayout({
     >
       <body className='flex flex-col font-primary'>
         {/* <Scroller> */}
-        <Header />
 
         {children}
         {/* </Scroller> */}

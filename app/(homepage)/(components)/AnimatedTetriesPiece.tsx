@@ -343,7 +343,9 @@ export default function AnimatedTetriesPiece({ ctx }: IAnimatedTetriesPiece) {
           y: () =>
             -(
               (+gsap.getProperty('#main', 'height') * 0.35) / 2 +
-              (+gsap.getProperty('#footer', 'height') - +window.innerHeight) / 2
+              (+gsap.getProperty('#footer', 'height') -
+                (+window.innerHeight + +window.innerHeight * 0.05)) /
+                2
             ),
         });
 

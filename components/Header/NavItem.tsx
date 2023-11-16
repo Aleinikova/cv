@@ -3,9 +3,10 @@ import clsx from 'clsx';
 interface INavItem {
   children: React.ReactNode;
   className?: string;
+  onClick: () => void;
 }
 
-function NavItem({ children, className }: INavItem) {
+function NavItem({ children, className, onClick }: INavItem) {
   return (
     <li
       className={clsx(
@@ -13,7 +14,9 @@ function NavItem({ children, className }: INavItem) {
         className
       )}
     >
-      {children}
+      <button onClick={onClick} type='button'>
+        {children}
+      </button>
     </li>
   );
 }

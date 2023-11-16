@@ -1,10 +1,17 @@
 'use client';
 
-import { useRef, useMemo, useEffect } from 'react';
+import {
+  useRef,
+  useMemo,
+  useEffect,
+  useCallback,
+  MutableRefObject,
+} from 'react';
 import gsap from 'gsap';
 import type { Scrollbar } from 'smooth-scrollbar/scrollbar';
 
 import Scroller from '@components/Scroller';
+import Header from '@components/Header';
 
 import AboutMe from './(components)/AboutMe';
 import Bottom from './(components)/Bottom';
@@ -37,17 +44,48 @@ export default function Home() {
     });
   }, []);
 
+  const aboutRef = useRef();
+  const projectsRef = useRef();
+  const technologiesRef = useRef();
+  const contactsRef = useRef();
+
+  const navigation = useMemo(
+    () => [
+      {
+        title: 'about me',
+        anchorRef: aboutRef,
+      },
+      {
+        title: 'projects',
+        anchorRef: projectsRef,
+      },
+      {
+        title: 'technologies',
+        anchorRef: technologiesRef,
+      },
+      {
+        title: 'contacts',
+        anchorRef: contactsRef,
+      },
+    ],
+    []
+  );
+
+  const handleClick = useCallback((el: MutableRefObject<HTMLElement>) => {
+    scrollbarRef.current.scrollIntoView(el.current);
+  }, []);
+
   return (
-    <main ref={animationContainerRef} className=''>
+    <div ref={animationContainerRef}>
       <div ref={test} className='h-screen  overflow-hidden' id='visible'>
         <div
           id='main'
-          className='relative -left-[4vw] top-[-10vh] flex w-[108vw] justify-center overflow-hidden rounded-3xl bg-text-primary'
+          className='relative -left-[4vw] top-[-15vh] flex w-[108vw] justify-center overflow-hidden rounded-3xl bg-text-primary'
         >
           <div className='w-screen' id='content'>
-            <div className='h-[10vh]' />
+            <div className='h-[15vh]' />
             <div
-              className='absolute -left-[22vw] -top-[-5vh] z-10 h-[110vh] w-[22vw] bg-text-primary'
+              className='absolute -left-[22vw] -top-[-5vh] z-10 h-[115vh] w-[22vw] bg-text-primary'
               id='left'
             >
               {/* <TetrisPiece
@@ -76,24 +114,25 @@ export default function Home() {
               /> */}
             </div>
             <div
-              className='absolute -right-[22vw] -top-[-5vh] z-10 h-[110vh] w-[22vw] bg-text-primary'
+              className='absolute -right-[22vw] -top-[-5vh] z-10 h-[115vh] w-[22vw] bg-text-primary'
               id='right'
             />
             <div className='h-screen'>
               <Scroller ref={scrollbarRef}>
-                <div id='scroll'>
-                  <div id='srollnested' className='bg-white'>
+                <div className='relative' id='scroll'>
+                  <Header navigation={navigation} onClick={handleClick} />
+                  <main id='srollnested' className='bg-white'>
                     <WelcomeBlock />
                     <div className='relative mx-auto flex min-h-screen w-full max-w-7xl flex-col items-center justify-between lg:px-20 xl:px-0'>
-                      <AboutMe />
-                      <Projects />
-                      <Technologies />
-                      <Contacts />
+                      <AboutMe ref={aboutRef} />
+                      <Projects ref={projectsRef} />
+                      <Technologies ref={technologiesRef} />
+                      <Contacts ref={contactsRef} />
                       <AnimatedTetriesPiece ctx={ctx} />
                     </div>
 
                     <Bottom />
-                  </div>
+                  </main>
                 </div>
               </Scroller>
             </div>
@@ -101,6 +140,6 @@ export default function Home() {
           </div>
         </div>
       </div>
-    </main>
+    </div>
   );
 }
