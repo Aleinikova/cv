@@ -284,18 +284,105 @@ export default function AnimatedTetriesPiece({ ctx }: IAnimatedTetriesPiece) {
         //   '>'
         // );
 
+        // gsap.to('#scroll', {
+        //   scrollTrigger: {
+        //     trigger: '#srollnested',
+        //     start: 'bottom bottom',
+        //     end: `bottom`,
+        //     scrub: 1,
+        //     // pin: true,
+        //     pin: true,
+        //     markers: true,
+        //   },
+        //   scale: 0.4,
+        //   // scaleX: 1.7,
+        //   // scaleY: 0.6,
+        //   y: () => +gsap.getProperty('#srollnested', 'height') * 0.4,
+        // });
+
+        // gsap.to('#main', {
+        //   scrollTrigger: {
+        //     trigger: '#srollnested',
+        //     start: 'bottom+=600 bottom',
+        //     end: `bottom+=1600`,
+        //     scrub: 1,
+        //     // pin: true,
+        //     pin: true,
+        //     markers: true,
+        //   },
+        //   scale: 0.4,
+        //   // scaleX: 1.7,
+        //   // scaleY: 0.6,
+        //   y: () => +gsap.getProperty('#srollnested', 'height') * 0.4,
+        // });
+
+        // gsap.to('#content', {
+        //   scrollTrigger: {
+        //     trigger: '#bottom',
+        //     start: 'bottom bottom',
+        //     end: `bottom`,
+        //     scrub: 1,
+        //     pin: true,
+        //     // pin: '#content',
+        //     markers: true,
+        //   },
+        //   scaleX: 0.4,
+        // });
+
         gsap.to('#main', {
           scrollTrigger: {
             trigger: '#bottom',
-            start: 'top',
-            end: `bottom`,
+            start: 'bottom bottom',
+            end: `bottom+=800`,
             scrub: 1,
-            pin: '#main',
+            pin: true,
+            // pin: '#content',
             markers: true,
           },
-          scale: 0.4,
-          y: () => 2700,
+          scale: 0.35,
+          y: () =>
+            -(
+              (+gsap.getProperty('#main', 'height') * 0.35) / 2 +
+              (+gsap.getProperty('#footer', 'height') - +window.innerHeight) / 2
+            ),
         });
+
+        gsap.to('#left', {
+          scrollTrigger: {
+            trigger: '#bottom',
+            start: 'bottom bottom',
+            end: `bottom+=600`,
+            scrub: 1,
+            // pin: '#content',
+            markers: true,
+          },
+          x: () => '22vw',
+        });
+
+        gsap.to('#right', {
+          scrollTrigger: {
+            trigger: '#bottom',
+            start: 'bottom bottom',
+            end: `bottom+=600`,
+            scrub: 1,
+            // pin: '#content',
+            markers: true,
+          },
+          x: () => '-22vw',
+        });
+
+        // gsap.to('#visible', {
+        //   scrollTrigger: {
+        //     trigger: '#bottom',
+        //     start: 'top',
+        //     end: `bottom`,
+        //     scrub: 1,
+        //     // pin: '#content',
+        //     markers: true,
+        //   },
+        //   className: 'overflow-y-scroll',
+        //   // y: () => 2700,
+        // });
       });
     }
 
@@ -307,7 +394,7 @@ export default function AnimatedTetriesPiece({ ctx }: IAnimatedTetriesPiece) {
   return (
     <TetrisPiece
       className='!absolute -top-[50vh] right-[60px] rotate-90 opacity-0'
-      size='medium'
+      size='md'
       variant='Z'
       color='red'
       id='mainTetrisPiece'

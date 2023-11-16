@@ -193,7 +193,7 @@ interface ITetrisPiece extends IGeneralPiece {
 }
 function TetrisPiece({
   variant,
-  size = 'small',
+  size = 'xs',
   color,
   className,
   style = {},

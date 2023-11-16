@@ -7,67 +7,67 @@ function Bottom() {
       id='bottom'
     >
       <TetrisPiece
-        size='large'
+        size='lg'
         variant='O'
         color='green'
         className='!absolute bottom-0 left-0'
       />
       <TetrisPiece
-        size='large'
+        size='lg'
         variant='T'
         color='red'
         className='!absolute -left-[60px] bottom-[300px] rotate-90'
       />
       <TetrisPiece
-        size='large'
+        size='lg'
         variant='J'
         color='yellow'
         className='!absolute bottom-[180px] left-[180px] rotate-[270deg] '
       />
       <TetrisPiece
-        size='large'
+        size='lg'
         variant='J'
         color='blue'
         className='!absolute -bottom-[180px] left-[300px] rotate-90'
       />
       <TetrisPiece
-        size='large'
+        size='lg'
         variant='I'
         color='green'
         className='!absolute bottom-[120px] left-[480px]'
       />
       <TetrisPiece
-        size='large'
+        size='lg'
         variant='S'
         color='yellow'
         className='!absolute bottom-0 left-[600px]'
       />
       <TetrisPiece
-        size='large'
+        size='lg'
         variant='Z'
         color='red'
         className='!absolute bottom-[120px] left-[600px] rotate-90'
       />
       <TetrisPiece
-        size='large'
+        size='lg'
         variant='I'
         color='blue'
         className='!absolute -bottom-[180px] left-[1020px] rotate-90'
       />
       <TetrisPiece
-        size='large'
+        size='lg'
         variant='O'
         color='blue'
         className='!absolute bottom-[240px] left-[840px]'
       />
       <TetrisPiece
-        size='large'
+        size='lg'
         variant='L'
         color='green'
         className='!absolute bottom-[60px] left-[1020px] rotate-[270deg]'
       />
       <TetrisPiece
-        size='large'
+        size='lg'
         variant='I'
         color='blue'
         className='!absolute bottom-0 left-[1320px]'

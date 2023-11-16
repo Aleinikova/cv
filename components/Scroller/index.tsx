@@ -1,45 +1,55 @@
 'use client';
 
-import { useEffect, useRef } from 'react';
+import React, { useImperativeHandle, useEffect, useRef, useState } from 'react';
 import gsap from 'gsap';
 import Scrollbar from 'smooth-scrollbar';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import type { Scrollbar as ScrollbarType } from 'smooth-scrollbar/scrollbar';
 
-function Scroller({ children }: { children: React.ReactNode }) {
-  const scrollerRef = useRef<HTMLDivElement>(null);
+// eslint-disable-next-line react/display-name
+const Scroller = React.forwardRef<ScrollbarType, { children: React.ReactNode }>(
+  ({ children }, scrollerRef) => {
+    const [scrollbar, setScrollbar] = useState<ScrollbarType>();
 
-  useEffect(() => {
-    gsap.registerPlugin(ScrollTrigger);
+    const scrollerContainerRef = useRef<HTMLDivElement>(null);
 
-    Scrollbar.init(scrollerRef.current);
+    useImperativeHandle(scrollerRef, () => scrollbar, [scrollbar]);
 
-    const scroller = scrollerRef.current;
+    useEffect(() => {
+      gsap.registerPlugin(ScrollTrigger);
 
-    const bodyScrollBar = Scrollbar.init(scroller, {
-      damping: 0.1,
-      delegateTo: document,
-      alwaysShowTracks: true,
-    });
+      Scrollbar.init(scrollerContainerRef.current);
 
-    ScrollTrigger.scrollerProxy(scroller, {
-      scrollTop(value) {
-        if (arguments.length) {
-          bodyScrollBar.scrollTop = value;
-        }
-        return bodyScrollBar.scrollTop;
-      },
-    });
+      const scroller = scrollerContainerRef.current;
 
-    bodyScrollBar.addListener(ScrollTrigger.update);
+      const bodyScrollBar = Scrollbar.init(scroller, {
+        damping: 0.1,
+        delegateTo: document,
+        alwaysShowTracks: true,
+      });
 
-    ScrollTrigger.defaults({ scroller });
-  }, []);
+      ScrollTrigger.scrollerProxy(scroller, {
+        scrollTop(value) {
+          if (arguments.length) {
+            bodyScrollBar.scrollTop = value;
+          }
+          return bodyScrollBar.scrollTop;
+        },
+      });
 
-  return (
-    <div className='h-screen' ref={scrollerRef}>
-      {children}
-    </div>
-  );
-}
+      bodyScrollBar.addListener(ScrollTrigger.update);
+
+      setScrollbar(bodyScrollBar);
+
+      ScrollTrigger.defaults({ scroller });
+    }, [scrollerRef]);
+
+    return (
+      <div className='h-screen' ref={scrollerContainerRef}>
+        {children}
+      </div>
+    );
+  }
+);
 
 export default Scroller;
