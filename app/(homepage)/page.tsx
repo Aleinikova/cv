@@ -22,8 +22,6 @@ import WelcomeBlock from './(components)/WelcomeBlock';
 import AnimatedTetriesPiece from './(components)/AnimatedTetriesPiece';
 import Footer from './(components)/Footer';
 
-// import TetrisPiece from '@components/TetrisPiece';
-
 export default function Home() {
   const animationContainerRef = useRef<HTMLDivElement>(null);
 
@@ -77,66 +75,47 @@ export default function Home() {
 
   return (
     <div ref={animationContainerRef}>
-      <div ref={test} className='h-screen  overflow-hidden' id='visible'>
+      <div ref={test} className='h-screen overflow-hidden' id='visible'>
         <div
-          id='main'
-          className='relative -left-[4vw] top-[-15vh] flex w-[108vw] justify-center overflow-hidden rounded-3xl bg-text-primary'
+          id='tetris'
+          className='absolute inset-x-1/2 inset-y-1/2 h-[350vh] w-[100vw] -translate-x-1/2 -translate-y-1/2 overflow-hidden rounded-3xl bg-text-primary'
         >
-          <div className='w-screen' id='content'>
-            <div className='h-[15vh]' />
+          {/* <div className='height-[100vh]' /> */}
+          <Footer />
+        </div>
+        <div id='cutter' className='relative w-screen overflow-hidden'>
+          <div
+            id='main'
+            className='relative flex h-screen w-screen justify-center overflow-hidden'
+          >
             <div
-              className='absolute -left-[22vw] -top-[-5vh] z-10 h-[115vh] w-[22vw] bg-text-primary'
-              id='left'
+              className='flex-column flex w-screen justify-center'
+              id='content'
             >
-              {/* <TetrisPiece
-                variant='L'
-                color='yellow'
-                size='sm'
-                className='relative left-1/3 top-[5%]'
-              />
-              <TetrisPiece
-                variant='O'
-                color='red'
-                size='sm'
-                className='relative left-1/3 top-[20%]'
-              />
-              <TetrisPiece
-                variant='Z'
-                color='blue'
-                size='sm'
-                className='relative left-1/3 top-[35%] translate-x-1/2'
-              />
-              <TetrisPiece
-                variant='J'
-                color='red'
-                size='sm'
-                className='relative left-1/3 top-[50%] translate-x-1/2'
-              /> */}
-            </div>
-            <div
-              className='absolute -right-[22vw] -top-[-5vh] z-10 h-[115vh] w-[22vw] bg-text-primary'
-              id='right'
-            />
-            <div className='h-screen'>
-              <Scroller ref={scrollbarRef}>
-                <div className='relative' id='scroll'>
-                  <Header navigation={navigation} onClick={handleClick} />
-                  <main id='srollnested' className='bg-white'>
-                    <WelcomeBlock />
-                    <div className='relative mx-auto flex min-h-screen w-full max-w-7xl flex-col items-center justify-between lg:px-20 xl:px-0'>
-                      <AboutMe ref={aboutRef} />
-                      <Projects ref={projectsRef} />
-                      <Technologies ref={technologiesRef} />
-                      <Contacts ref={contactsRef} />
-                      <AnimatedTetriesPiece ctx={ctx} />
-                    </div>
+              <div className='h-[15vh]' />
+              <div className='h-screen w-screen'>
+                <Scroller ref={scrollbarRef}>
+                  <div className='relative' id='scroll'>
+                    <Header navigation={navigation} onClick={handleClick} />
+                    <main
+                      id='srollnested'
+                      className='overflow-x-hidden bg-white'
+                    >
+                      <WelcomeBlock />
+                      <div className='relative mx-auto flex min-h-screen w-full max-w-7xl flex-col items-center justify-between lg:px-20 xl:px-0'>
+                        <AboutMe ref={aboutRef} />
+                        <Projects ref={projectsRef} />
+                        <Technologies ref={technologiesRef} />
+                        <Contacts ref={contactsRef} />
+                        <AnimatedTetriesPiece ctx={ctx} />
+                      </div>
 
-                    <Bottom />
-                  </main>
-                </div>
-              </Scroller>
+                      <Bottom />
+                    </main>
+                  </div>
+                </Scroller>
+              </div>
             </div>
-            <Footer />
           </div>
         </div>
       </div>

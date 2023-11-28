@@ -28,69 +28,6 @@ export default function AnimatedTetriesPiece({ ctx }: IAnimatedTetriesPiece) {
           },
         });
 
-        // gsap.to('#mainTetrisPiece', {
-        //   scrollTrigger: {
-        //     trigger: '#aboutMe',
-        //     start: 'top',
-        //     scrub: true,
-        //     end: () => `+=10px`,
-        //     pin: true,
-        //     pinSpacing: true,
-        //   },
-        //   opacity: 1,
-        // });
-
-        // const tl = gsap.timeline();
-
-        // gsap.to('#mainTetrisPiece', {
-        //   scrollTrigger: {
-        //     trigger: '#aboutMe',
-        //     start: 'top',
-        //     end: 'top+=10px',
-        //     scrub: true,
-        //     // pin: true,
-        //     // pinSpacing: true,
-        //     markers: true,
-        //   },
-        //   immediateRender: false,
-        //   opacity: 1,
-        //   // +gsap.getProperty('#aboutMe', 'height') * 0.75 +
-        //   // +gsap.getProperty('#aboutMe', 'height') * 0.85,
-        // });
-
-        // gsap.to('#mainTetrisPiece', {
-        //   scrollTrigger: {
-        //     trigger: '#aboutMe',
-        //     start: 'top',
-        //     end: () => `top+=${+gsap.getProperty('#aboutMe', 'height') * 0.3}`,
-        //     scrub: true,
-        //     // pin: true,
-        //     // pinSpacing: true,
-        //     markers: true,
-        //   },
-        //   immediateRender: false,
-        //   y: () =>
-        //     window.innerHeight * 0.3 +
-        //     +gsap.getProperty('#aboutMe', 'height') / 2,
-        // });
-
-        // gsap.to('#mainTetrisPiece', {
-        //   scrollTrigger: {
-        //     trigger: '#aboutMe',
-        //     start: () =>
-        //       `top+=${+gsap.getProperty('#aboutMe', 'height') * 0.3}`,
-        //     end: 'bottom',
-        //     scrub: true,
-        //     // pin: true,
-        //     // pinSpacing: true,
-        //     markers: true,
-        //   },
-        //   immediateRender: false,
-        //   y: () =>
-        //     window.innerHeight * 0.3 + +gsap.getProperty('#aboutMe', 'height'),
-        //   rotation: 0,
-        // });
-
         tl.to('#mainTetrisPiece', {
           scrollTrigger: {
             trigger: '#aboutMe',
@@ -139,7 +76,6 @@ export default function AnimatedTetriesPiece({ ctx }: IAnimatedTetriesPiece) {
                 start: 'top',
                 end: `center`,
                 scrub: 1,
-                markers: true,
                 pin: true,
                 pinSpacing: true,
               },
@@ -336,42 +272,69 @@ export default function AnimatedTetriesPiece({ ctx }: IAnimatedTetriesPiece) {
             end: `bottom+=800`,
             scrub: 1,
             pin: true,
-            // pin: '#content',
-            markers: true,
           },
           scale: 0.35,
           y: () =>
             -(
               (+gsap.getProperty('#main', 'height') * 0.35) / 2 +
-              (+gsap.getProperty('#footer', 'height') -
-                (+window.innerHeight + +window.innerHeight * 0.05)) /
+              (+window.innerHeight * 0.9 -
+                400 -
+                +gsap.getProperty('#main', 'height') * 0.35) /
                 2
             ),
         });
 
-        gsap.to('#left', {
+        gsap.to('#content', {
           scrollTrigger: {
             trigger: '#bottom',
             start: 'bottom bottom',
-            end: `bottom+=600`,
+            end: `bottom+=800`,
             scrub: 1,
-            // pin: '#content',
-            markers: true,
           },
-          x: () => '22vw',
+          width: '800px',
+          overflow: 'hidden',
         });
 
-        gsap.to('#right', {
+        gsap.to('#tetris', {
           scrollTrigger: {
             trigger: '#bottom',
             start: 'bottom bottom',
-            end: `bottom+=600`,
+            end: `bottom+=800`,
             scrub: 1,
-            // pin: '#content',
-            markers: true,
           },
-          x: () => '-22vw',
+          width: '400px',
+          height: '90vh',
         });
+
+        gsap.to('#footer', {
+          scrollTrigger: {
+            trigger: '#bottom',
+            start: 'bottom bottom',
+            end: `bottom+=800`,
+            scrub: 1,
+          },
+          scale: 1,
+        });
+
+        // gsap.to('#left', {
+        //   scrollTrigger: {
+        //     trigger: '#bottom',
+        //     start: 'bottom bottom',
+        //     end: `bottom+=600`,
+        //     scrub: 1,
+        //   },
+        //   x: () => '22vw',
+        // });
+
+        // gsap.to('#right', {
+        //   scrollTrigger: {
+        //     trigger: '#bottom',
+        //     start: 'bottom bottom',
+        //     end: `bottom+=600`,
+        //     scrub: 1,
+        //   },
+        //   x: () => '-22vw',
+        // });
 
         // gsap.to('#visible', {
         //   scrollTrigger: {
