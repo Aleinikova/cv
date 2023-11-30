@@ -1,7 +1,7 @@
-function FooterEl() {
+function TetrisControls() {
   return (
-    <footer
-      className='absolute bottom-0 flex w-full scale-[4] flex-col items-center bg-text-primary pb-3 '
+    <div
+      className='absolute bottom-0 flex w-full scale-[4] flex-col items-center pb-3 '
       id='footer'
     >
       <div className='flex w-full max-w-[366px] flex-col items-center'>
@@ -67,8 +67,8 @@ function FooterEl() {
           designed by Valeria Mahilevich
         </div>
       </div>
-    </footer>
+    </div>
   );
 }
 
-export default FooterEl;
+export default TetrisControls;

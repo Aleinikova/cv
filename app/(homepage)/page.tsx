@@ -12,6 +12,7 @@ import type { Scrollbar } from 'smooth-scrollbar/scrollbar';
 
 import Scroller from '@components/Scroller';
 import Header from '@components/Header';
+import TetrisPiece from '@components/TetrisPiece';
 
 import AboutMe from './(components)/AboutMe';
 import Bottom from './(components)/Bottom';
@@ -19,20 +20,17 @@ import Contacts from './(components)/Contacts';
 import Projects from './(components)/Projects';
 import Technologies from './(components)/Technologies';
 import WelcomeBlock from './(components)/WelcomeBlock';
-import AnimatedTetriesPiece from './(components)/AnimatedTetriesPiece';
-import Footer from './(components)/Footer';
+import Tetris from './(components)/AnimatedTetris';
 
 export default function Home() {
-  const animationContainerRef = useRef<HTMLDivElement>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
 
-  const catchScrollRef = useRef<HTMLDivElement>(null);
-
-  const ctx = useMemo(() => gsap.context(() => {}, animationContainerRef), []);
+  const ctx = useMemo(() => gsap.context(() => {}, containerRef), []);
 
   const scrollbarRef = useRef<Scrollbar>();
 
   useEffect(() => {
-    const catchScrollEl = catchScrollRef.current;
+    const containerEl = containerRef.current;
 
     const handleWheel = (e: WheelEvent) => {
       if (
@@ -46,10 +44,10 @@ export default function Home() {
       }
     };
 
-    catchScrollEl.addEventListener('mousewheel', handleWheel);
+    containerEl.addEventListener('mousewheel', handleWheel);
 
     return () => {
-      catchScrollEl.addEventListener('mousewheel', handleWheel);
+      containerEl.addEventListener('mousewheel', handleWheel);
     };
   }, []);
 
@@ -85,46 +83,35 @@ export default function Home() {
   }, []);
 
   return (
-    <div ref={animationContainerRef}>
+    <div ref={containerRef} className='h-screen overflow-hidden'>
+      <Tetris ctx={ctx} />
       <div
-        ref={catchScrollRef}
-        className='h-screen overflow-hidden'
-        id='visible'
+        id='screen'
+        className='relative flex h-screen w-screen justify-center overflow-hidden'
       >
-        <div
-          id='tetris'
-          className='absolute inset-x-1/2 inset-y-1/2 h-[350vh] w-[100vw] -translate-x-1/2 -translate-y-1/2 overflow-hidden rounded-3xl bg-text-primary'
-        >
-          <Footer />
-        </div>
-
-        <div
-          id='main'
-          className='relative flex h-screen w-screen justify-center overflow-hidden'
-        >
-          <div
-            className='flex-column flex w-screen justify-center'
-            id='content'
-          >
-            <div className='h-screen w-screen'>
-              <Scroller ref={scrollbarRef}>
-                <div className='relative' id='scroll'>
-                  <Header navigation={navigation} onClick={handleClick} />
-                  <main id='srollnested' className='overflow-x-hidden bg-white'>
-                    <WelcomeBlock />
-                    <div className='relative mx-auto flex min-h-screen w-full max-w-7xl flex-col items-center justify-between lg:px-20 xl:px-0'>
-                      <AboutMe ref={aboutRef} />
-                      <Projects ref={projectsRef} />
-                      <Technologies ref={technologiesRef} />
-                      <Contacts ref={contactsRef} />
-                      <AnimatedTetriesPiece ctx={ctx} />
-                    </div>
-
-                    <Bottom />
-                  </main>
+        <div className='flex-column flex w-screen justify-center' id='content'>
+          <div className='relative h-screen w-screen'>
+            <Scroller ref={scrollbarRef}>
+              <Header navigation={navigation} onClick={handleClick} />
+              <main className='overflow-x-hidden bg-white'>
+                <WelcomeBlock />
+                <div className='relative mx-auto flex min-h-screen w-full max-w-7xl flex-col items-center justify-between lg:px-20 xl:px-0'>
+                  <AboutMe ref={aboutRef} />
+                  <Projects ref={projectsRef} />
+                  <Technologies ref={technologiesRef} />
+                  <Contacts ref={contactsRef} />
+                  <TetrisPiece
+                    className='!absolute -top-[50vh] right-[60px] rotate-90 opacity-0'
+                    size='md'
+                    variant='Z'
+                    color='red'
+                    id='mainTetrisPiece'
+                  />
                 </div>
-              </Scroller>
-            </div>
+
+                <Bottom />
+              </main>
+            </Scroller>
           </div>
         </div>
       </div>
