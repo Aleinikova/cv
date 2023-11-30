@@ -68,8 +68,10 @@ const EMPTY_PIECES = [3, 5];
 function Project({ className, title, startDate, endDate, stack }: IProject) {
   return (
     <div className={clsx('h-64 w-64 p-6', className)}>
-      <h4 className='font-xl mb-2 font-secondary font-bold'>{title}</h4>
-      <p className='mb-5'>{`${new Date(startDate).toLocaleString('en-US', {
+      <h4 className='font-xl mb-1 font-secondary font-bold'>{title}</h4>
+      <p className='mb-5 text-sm text-neutral-900'>{`${new Date(
+        startDate
+      ).toLocaleString('en-US', {
         year: 'numeric',
         month: 'long',
       })} - ${new Date(endDate).toLocaleString('en-US', {

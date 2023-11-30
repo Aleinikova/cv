@@ -13,8 +13,13 @@ body {
 }
 
 .section {
-  padding-top: 112px;
-  padding-bottom: 112px;
-  /* margin-top: 52px;
-  margin-bottom: 52px; */
+  padding-top: 80px;
+  padding-bottom: 80px;
+}
+
+@media (min-width: 1441px) {
+  .section {
+    padding-top: 112px;
+    padding-bottom: 112px;
+  }
 }
