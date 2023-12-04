@@ -4,16 +4,16 @@ import Image from 'next/image';
 
 const AboutMe = React.forwardRef<HTMLElement>((_, ref) => (
   <section
-    className='section z-10 flex w-full flex-col px-8'
+    className='section z-10 flex w-full flex-col xl:px-8'
     id='aboutMe'
     ref={ref}
   >
-    <Headline className='mb-28' component='h2'>
+    <Headline className='mb-16' component='h2'>
       About me
     </Headline>
-    <div className='flex w-full items-center justify-between'>
-      <div className='relative flex flex-shrink-0'>
-        <div className='absolute -left-6 -top-6 -z-10 h-[445px] w-[320px] border-2 border-solid border-secondary content-[""]' />
+    <div className='flex w-full flex-col items-center justify-between md:flex-row'>
+      <div className='max-w-4/5 relative mb-10 flex flex-shrink-0 lg:w-auto'>
+        {/* <div className='absolute -left-6 -top-6 -z-10 h-full w-full border-2 border-solid border-secondary content-[""]' /> */}
         <Image
           src='/author.png'
           alt='Picture of the author'
@@ -21,9 +21,9 @@ const AboutMe = React.forwardRef<HTMLElement>((_, ref) => (
           height={445}
           quality={100}
         />
-        <div className='absolute -bottom-6 -right-6 -z-10 h-[445px] w-[320px] border-2 border-solid border-primary content-[""]' />
+        {/* <div className='absolute -bottom-6 -right-6 -z-10 h-full w-full border-2 border-solid border-primary content-[""]' /> */}
       </div>
-      <div>
+      <div className='ml-6'>
         <h3 className='font-secondary text-2xl font-medium'>
           Valeria Mahilevich
         </h3>
@@ -31,7 +31,7 @@ const AboutMe = React.forwardRef<HTMLElement>((_, ref) => (
           Frontend developer, 27 years old
         </p>
 
-        <p className='max-w-[500px] text-base leading-6'>
+        <p className='max-w-lg text-base leading-6'>
           I’m an Frontend developer with 6 years of expertise.
           <br />
           <br />
