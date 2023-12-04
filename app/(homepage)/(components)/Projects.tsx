@@ -15,7 +15,7 @@ const PROJECT_LIST = [
   {
     title: 'NewNew',
     startDate: '2022-04-01',
-    endDate: '2022-04-01',
+    endDate: '2024-08-24',
     stack: ['Next.js', 'Typescript', 'Styled-components', 'Video.js'],
     className: 'bg-secondary bg-opacity-75',
   },
@@ -30,15 +30,15 @@ const PROJECT_LIST = [
     title: 'AudioClub',
     startDate: '2022-01-01',
     endDate: '2022-02-01',
-    stack: ['Nunjucks', 'SGAP'],
-    className: 'project-animated opacity-0',
+    stack: ['Nunjucks', 'GSAP animation'],
+    className: 'project-animated opacity-0 order-1 md:order-none',
   },
   {
     title: 'Sinomotors',
     startDate: '2021-07-01',
     endDate: '2022-02-01',
-    stack: ['Next.js', 'React-hook-form', 'SWR'],
-    className: 'project-animated opacity-0',
+    stack: ['Next.js', 'React-hook-form', 'SWR', 'Tailwind css'],
+    className: 'project-animated opacity-0 order-2 lg:order-none',
   },
   {
     title: 'Olimpic skydive',
@@ -63,11 +63,11 @@ const PROJECT_LIST = [
   },
 ];
 
-const EMPTY_PIECES = [3, 5];
+const EMPTY_PIECES = [5];
 
 function Project({ className, title, startDate, endDate, stack }: IProject) {
   return (
-    <div className={clsx('h-64 w-64 p-6', className)}>
+    <div className={clsx('', className)}>
       <h4 className='font-xl mb-1 font-secondary font-bold'>{title}</h4>
       <p className='mb-5 text-sm text-neutral-900'>{`${new Date(
         startDate
@@ -96,15 +96,26 @@ const Projects = React.forwardRef<HTMLElement>((_, forwardRef) => {
       id='projects'
       ref={forwardRef}
     >
-      <Headline className='mb-28' component='h2'>
-        Projects
-      </Headline>
-      <ul className='projects-list flex flex-wrap' ref={ref}>
+      <Headline component='h2'>Projects</Headline>
+      <ul
+        className='projects-list flex flex-col flex-wrap items-center justify-center sm:flex-row sm:justify-start'
+        ref={ref}
+      >
         {PROJECT_LIST.map(({ className, ...projectEl }, index) => (
-          <li key={projectEl.title} className='flex'>
-            <Project className={className} {...projectEl} />
-            {EMPTY_PIECES.includes(index) && <div className='h-64 w-64' />}
-          </li>
+          <>
+            <li
+              key={projectEl.title}
+              className={clsx(
+                'flex h-[80vw] w-[80vw] p-6 sm:h-[33vw] sm:w-1/2 md:w-1/3 lg:aspect-square lg:h-auto lg:w-1/4',
+                className
+              )}
+            >
+              <Project {...projectEl} />
+            </li>
+            {EMPTY_PIECES.includes(index) && (
+              <div className='hidden sm:h-1/2 sm:w-1/2 lg:flex lg:aspect-square lg:h-auto lg:w-1/4' />
+            )}
+          </>
         ))}
       </ul>
     </section>
