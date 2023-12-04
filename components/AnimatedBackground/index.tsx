@@ -1,12 +1,15 @@
 'use client';
 
 import clsx from 'clsx';
-import { useEffect, useRef, useMemo, useState, useLayoutEffect } from 'react';
+import { useEffect, useRef, useMemo, useState, useCallback } from 'react';
 import gsap from 'gsap';
 
 import Tetris from '@components/TetrisPiece';
 
-const initFallingPiecesAnimation = (tl: ReturnType<typeof gsap.timeline>) => {
+const initFallingPiecesAnimation = (
+  tl: ReturnType<typeof gsap.timeline>,
+  durationCof: number = 1
+) => {
   tl.fromTo(
     '.tetris-1',
     {
@@ -16,9 +19,9 @@ const initFallingPiecesAnimation = (tl: ReturnType<typeof gsap.timeline>) => {
     },
     {
       opacity: 0,
-      transform: 'translateY(100vh)',
+      transform: 'translateY(110vh)',
       rotate: 180,
-      duration: 6,
+      duration: 8 * durationCof,
       repeat: -1,
     }
   );
@@ -32,12 +35,12 @@ const initFallingPiecesAnimation = (tl: ReturnType<typeof gsap.timeline>) => {
     },
     {
       opacity: 0,
-      transform: 'translateY(100vh)',
+      transform: 'translateY(110vh)',
       rotate: -90,
-      duration: 6,
+      duration: 8 * durationCof,
       repeat: -1,
     },
-    3
+    3 * durationCof
   );
 
   tl.fromTo(
@@ -48,11 +51,11 @@ const initFallingPiecesAnimation = (tl: ReturnType<typeof gsap.timeline>) => {
     },
     {
       opacity: 0,
-      transform: 'translateY(100vh)',
-      duration: 6,
+      transform: 'translateY(110vh)',
+      duration: 8 * durationCof,
       repeat: -1,
     },
-    1.2
+    1.2 * durationCof
   );
 
   tl.fromTo(
@@ -63,11 +66,11 @@ const initFallingPiecesAnimation = (tl: ReturnType<typeof gsap.timeline>) => {
     },
     {
       opacity: 0,
-      transform: 'translateY(100vh)',
-      duration: 6,
+      transform: 'translateY(110vh)',
+      duration: 8 * durationCof,
       repeat: -1,
     },
-    2
+    2 * durationCof
   );
 
   tl.fromTo(
@@ -78,11 +81,11 @@ const initFallingPiecesAnimation = (tl: ReturnType<typeof gsap.timeline>) => {
     },
     {
       opacity: 0,
-      transform: 'translateY(100vh)',
-      duration: 6,
+      transform: 'translateY(110vh)',
+      duration: 8 * durationCof,
       repeat: -1,
     },
-    0.2
+    0.2 * durationCof
   );
 
   tl.fromTo(
@@ -94,12 +97,12 @@ const initFallingPiecesAnimation = (tl: ReturnType<typeof gsap.timeline>) => {
     },
     {
       opacity: 0,
-      transform: 'translateY(100vh)',
+      transform: 'translateY(110vh)',
       rotate: 90,
-      duration: 6,
+      duration: 8 * durationCof,
       repeat: -1,
     },
-    3.2
+    3.2 * durationCof
   );
 
   tl.fromTo(
@@ -110,11 +113,11 @@ const initFallingPiecesAnimation = (tl: ReturnType<typeof gsap.timeline>) => {
     },
     {
       opacity: 0,
-      transform: 'translateY(100vh)',
-      duration: 6,
+      transform: 'translateY(110vh)',
+      duration: 8 * durationCof,
       repeat: -1,
     },
-    1.3
+    1.3 * durationCof
   );
 
   tl.fromTo(
@@ -125,11 +128,11 @@ const initFallingPiecesAnimation = (tl: ReturnType<typeof gsap.timeline>) => {
     },
     {
       opacity: 0,
-      transform: 'translateY(100vh)',
-      duration: 6,
+      transform: 'translateY(110vh)',
+      duration: 8 * durationCof,
       repeat: -1,
     },
-    3.6
+    3.6 * durationCof
   );
 
   tl.fromTo(
@@ -141,14 +144,16 @@ const initFallingPiecesAnimation = (tl: ReturnType<typeof gsap.timeline>) => {
     },
     {
       opacity: 0,
-      transform: 'translateY(100vh)',
+      transform: 'translateY(110vh)',
       rotate: 90,
-      duration: 6,
+      duration: 8 * durationCof,
       repeat: -1,
     },
-    0.6
+    0.6 * durationCof
   );
 };
+
+const HEIGHT_FOR_ANIMATION_CALCULATION = 980;
 
 function AnimatedBackground() {
   const animationContainerRef = useRef<HTMLDivElement>(null);
@@ -162,23 +167,42 @@ function AnimatedBackground() {
     setIsClient(true);
   }, []);
 
-  useLayoutEffect(() => {
+  const initAnimation = useCallback(() => {
     ctx.add(() => {
       animationTimeline.current = gsap.timeline({ repeat: -1 });
 
-      initFallingPiecesAnimation(animationTimeline.current);
+      initFallingPiecesAnimation(
+        animationTimeline.current,
+        window.innerHeight / HEIGHT_FOR_ANIMATION_CALCULATION
+      );
     }, animationContainerRef);
+  }, [ctx]);
 
-    return () => ctx.revert();
-  }, [ctx, isClient]);
+  // // clear animation
+  useEffect(() => {
+    if (isClient) {
+      initAnimation();
+    }
 
-  // clear animation
-  useEffect(
-    () => () => {
+    return () => {
       ctx.revert();
-    },
-    [ctx]
-  );
+    };
+  }, [ctx, initAnimation, isClient]);
+
+  // reset animation on resize
+  useEffect(() => {
+    const handleResize = () => {
+      ctx.revert();
+
+      initAnimation();
+    };
+
+    window.addEventListener('resize', handleResize);
+
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, [ctx, initAnimation]);
 
   if (!isClient) {
     return null;
