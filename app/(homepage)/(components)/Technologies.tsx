@@ -32,20 +32,24 @@ const TOOLS = [
 
 const Technologies = React.forwardRef<HTMLElement>((_, ref) => (
   <section className='section flex w-full flex-col' id='technologies' ref={ref}>
-    <Headline className='mb-28' component='h2'>
-      Technologies
-    </Headline>
-    <div className='flex'>
-      <ul className='flex flex-1 flex-col pl-10'>
+    <Headline component='h2'>Technologies</Headline>
+    <div className='flex flex-col sm:flex-row'>
+      <ul className='mb-6 flex flex-1 flex-col'>
         {TECHNOLOGIES.map((tech) => (
-          <ListItem key={tech} className='mb-2 flex text-2xl leading-8'>
+          <ListItem
+            key={tech}
+            className='mb-2 flex leading-8 sm:text-lg md:text-xl lg:text-2xl'
+          >
             {tech}
           </ListItem>
         ))}
       </ul>
-      <ul className='flex flex-1 flex-col pl-40'>
+      <ul className='flex flex-1 flex-col lg:pl-40'>
         {TOOLS.map((tech) => (
-          <ListItem key={tech} className='mb-2 flex text-2xl leading-8'>
+          <ListItem
+            key={tech}
+            className='mb-2 flex leading-8 sm:text-lg md:text-xl lg:text-2xl'
+          >
             {tech}
           </ListItem>
         ))}

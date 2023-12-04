@@ -42,9 +42,9 @@ const Contacts = React.forwardRef<HTMLElement>((_, ref) => (
   >
     <Headline component='h2'>Contacts</Headline>
     <div className='flex w-full items-center justify-between'>
-      <ul className='flex w-full flex-col flex-wrap lg:flex-row'>
+      <ul className='flex w-full flex-col flex-wrap sm:flex-row'>
         {CONTACTS.map((contact: IContact) => (
-          <li className='mb-4 w-full lg:w-2/4' key={contact.title}>
+          <li className='mb-4 w-2/4' key={contact.title}>
             <a
               className='flex w-fit items-center'
               href={contact.link}
@@ -52,7 +52,9 @@ const Contacts = React.forwardRef<HTMLElement>((_, ref) => (
               rel='noopener noreferrer'
             >
               <contact.Icon className='mr-2 h-4 w-4 flex-shrink-0 text-brand-blue lg:mr-3 lg:h-6 lg:w-6' />
-              <span className='text-lg lg:text-2xl'>{contact.title}</span>
+              <span className='whitespace-nowrap text-base md:text-lg lg:text-2xl'>
+                {contact.title}
+              </span>
             </a>
           </li>
         ))}
