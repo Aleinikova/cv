@@ -36,6 +36,12 @@ const config: Config = {
       maxWidth: {
         'max-w-8xl': '1360px',
       },
+      fontSize: {
+        '2xs': '0.625rem',
+      },
+      borderWidth: {
+        6: '6px',
+      },
     },
   },
   plugins: [],

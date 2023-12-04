@@ -13,17 +13,17 @@ const CONTACTS = [
   },
   {
     link: 'https://github.com/Aleinikova',
-    title: 'github.com',
+    title: 'github/Aleinikova',
     Icon: GitHubSvg,
   },
   {
     link: 'https://www.linkedin.com/in/valeria-mahilevich-149a98a1/',
-    title: 'linkedin.com',
+    title: 'linkedin/valeria-mahilevich',
     Icon: LinkedinSvg,
   },
   {
     link: 'https://www.upwork.com/freelancers/~01dd1cfeca57b872e3',
-    title: 'www.upwork.com',
+    title: 'upwork/~01dd1cfeca57b872e3',
     Icon: UpworkSvg,
   },
 ];
@@ -40,21 +40,19 @@ const Contacts = React.forwardRef<HTMLElement>((_, ref) => (
     id='contacts'
     ref={ref}
   >
-    <Headline className='mb-28' component='h2'>
-      Contacts
-    </Headline>
+    <Headline component='h2'>Contacts</Headline>
     <div className='flex w-full items-center justify-between'>
-      <ul className='flex w-full flex-wrap'>
+      <ul className='flex w-full flex-col flex-wrap lg:flex-row'>
         {CONTACTS.map((contact: IContact) => (
-          <li className='mb-4 w-2/4' key={contact.title}>
+          <li className='mb-4 w-full lg:w-2/4' key={contact.title}>
             <a
               className='flex w-fit items-center'
               href={contact.link}
               target='_blank'
               rel='noopener noreferrer'
             >
-              <contact.Icon className='mr-3 text-brand-blue' />
-              <span className='font-secondary text-2xl'>{contact.title}</span>
+              <contact.Icon className='mr-2 h-4 w-4 flex-shrink-0 text-brand-blue lg:mr-3 lg:h-6 lg:w-6' />
+              <span className='text-lg lg:text-2xl'>{contact.title}</span>
             </a>
           </li>
         ))}
