@@ -17,53 +17,55 @@ const PROJECT_LIST = [
     startDate: '2022-04-01',
     endDate: '2024-08-24',
     stack: ['Next.js', 'Typescript', 'Styled-components', 'Video.js'],
-    className: 'bg-secondary bg-opacity-75',
+    className: 'bg-secondary order-0 bg-opacity-75',
   },
   {
     title: 'Enviago',
     startDate: '2022-04-01',
     endDate: '2022-04-01',
     stack: ['Next.js', 'Typescript', 'Styled-components', 'Video.js'],
-    className: 'bg-secondary bg-opacity-60',
+    className: 'bg-secondary order-0 bg-opacity-60',
   },
   {
     title: 'AudioClub',
     startDate: '2022-01-01',
     endDate: '2022-02-01',
     stack: ['Nunjucks', 'GSAP animation'],
-    className: 'project-animated opacity-0 order-1 md:order-none',
+    className:
+      'project-animated bg-secondary bg-opacity-50 order-0 xl:opacity-0 xl:order-none xl:bg-transparent',
   },
   {
     title: 'Sinomotors',
     startDate: '2021-07-01',
     endDate: '2022-02-01',
     stack: ['Next.js', 'React-hook-form', 'SWR', 'Tailwind css'],
-    className: 'project-animated opacity-0 order-2 lg:order-none',
+    className:
+      'project-animated bg-secondary bg-opacity-40 order-0 xl:opacity-0 xl:order-none xl:bg-transparent',
   },
   {
     title: 'Olimpic skydive',
     startDate: '2020-04-01',
     endDate: '2021-07-01',
     stack: ['React', 'Redux toolkit', 'React-hook-forms', 'MUI'],
-    className: 'bg-secondary bg-opacity-50',
+    className: 'xl:bg-secondary xl:bg-opacity-50',
   },
   {
     title: 'PettyGigs',
     startDate: '2019-10-01',
     endDate: '2020-03-01',
     stack: ['React Native', 'Redux toolkit', 'React-hook-forms'],
-    className: 'bg-secondary bg-opacity-40',
+    className: 'xl:bg-secondary xl:bg-opacity-40',
   },
   {
     title: 'Loreal',
     startDate: '2017-01-01',
     endDate: '2019-09-01',
     stack: ['React', 'Redux'],
-    className: 'project-animated opacity-0',
+    className: 'project-animated xl:opacity-0',
   },
 ];
 
-const EMPTY_PIECES = [5];
+const EMPTY_PIECES = [3, 5];
 
 function Project({ className, title, startDate, endDate, stack }: IProject) {
   return (
@@ -106,14 +108,14 @@ const Projects = React.forwardRef<HTMLElement>((_, forwardRef) => {
             <li
               key={projectEl.title}
               className={clsx(
-                'flex h-[80vw] w-[80vw] p-6 sm:h-[33vw] sm:w-1/2 md:w-1/3 lg:aspect-square lg:h-auto lg:w-1/4',
+                'flex h-[80vw] w-[80vw] p-6 sm:aspect-square sm:h-auto sm:w-1/2 xl:h-auto xl:w-1/5',
                 className
               )}
             >
               <Project {...projectEl} />
             </li>
             {EMPTY_PIECES.includes(index) && (
-              <div className='hidden sm:h-1/2 sm:w-1/2 lg:flex lg:aspect-square lg:h-auto lg:w-1/4' />
+              <div className='hidden aspect-square h-auto w-1/5 xl:flex' />
             )}
           </>
         ))}
