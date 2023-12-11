@@ -9,7 +9,7 @@ interface IHeader {
 
 function Header({ navigation, onClick }: IHeader) {
   return (
-    <header className='absolute z-20 flex w-full px-8 py-6'>
+    <header className='absolute z-20  hidden w-full px-8 py-6 lg:flex'>
       <Nav className='ml-auto' items={navigation} onClick={onClick} />
     </header>
   );
