@@ -2,7 +2,6 @@ import { useState, useEffect, useLayoutEffect } from 'react';
 import gsap from 'gsap';
 import ScrollTrigger from 'gsap/ScrollTrigger';
 
-import TetrisPiece from '@components/TetrisPiece';
 import TetrisControls from './TetrisControls';
 
 import { mainAnimation } from '../utils';
@@ -49,21 +48,12 @@ function AnimatedTetris({ ctx }: IAnimatedTetris) {
   }, [ctx]);
 
   return (
-    <>
-      <div
-        id='tetris'
-        className='absolute inset-x-1/2 inset-y-1/2 h-[350vh] w-[100vw] -translate-x-1/2 -translate-y-1/2 overflow-hidden rounded-3xl bg-text-primary'
-      >
-        <TetrisControls />
-      </div>
-      <TetrisPiece
-        className='!absolute -top-[50vh] right-[60px] rotate-90 opacity-0'
-        size='md'
-        variant='Z'
-        color='red'
-        id='mainTetrisPiece'
-      />
-    </>
+    <div
+      id='tetris'
+      className='absolute inset-x-1/2 inset-y-1/2 h-[350vh] w-[100vw] -translate-x-1/2 -translate-y-1/2 overflow-hidden rounded-3xl bg-text-primary'
+    >
+      <TetrisControls />
+    </div>
   );
 }
 
