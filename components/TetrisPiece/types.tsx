@@ -7,7 +7,7 @@ export interface IGeneralPiece {
 // eslint-disable-next-line no-shadow
 export enum Size {
   xs = 24,
-  sm = 46,
+  sm = 48,
   md = 100,
   lg = 120,
 }

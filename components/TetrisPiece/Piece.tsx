@@ -21,7 +21,7 @@ interface IPiece extends IGeneralPiece {
 }
 
 function Piece({
-  size = 'small',
+  size = 'xs',
   color = 'red',
   opacity = 100,
   className,
