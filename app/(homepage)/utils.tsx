@@ -3,11 +3,6 @@ import gsap from 'gsap';
 const breakPoint = 1440;
 
 const tetrisPieceAnimationDesktop = (tl: gsap.core.Timeline) => {
-  // gsap.to('.box', {
-  //   rotation: isDesktop ? 360 : 180, // spin further if desktop
-  //   duration: reduceMotion ? 0 : 2, // skip to the end if prefers-reduced-motion
-  // });
-
   const tetrisPieceHeight = +gsap.getProperty('#mainTetrisPiece', 'height');
 
   const aboutMeSectionHeight = +gsap.getProperty('#aboutMe', 'height');
@@ -135,57 +130,6 @@ const tetrisPieceAnimationDesktop = (tl: gsap.core.Timeline) => {
       rotation: 90,
       scale: 1.2,
     })
-    // .to('#mainTetrisPiece', {
-    //   scrollTrigger: {
-    //     trigger: '#contacts',
-    //     start: () => `top-=${projectsSectionHeight / 4}`,
-    //     end: () => `bottom-=${contactsSectionHeight * 0.9}`,
-    //     scrub: true,
-    //   },
-    //   y: () =>
-    //     window.innerHeight * 0.5 +
-    //     aboutMeSectionHeight * 1.5 +
-    //     (tetrisPieceHeight * 2.56 - tetrisPieceHeight) / 2 +
-    //     projectsSectionHeight +
-    //     technologiesSectionHeight,
-    //   x: 0,
-    //   rotation: 90,
-    // })
-    // .to('#mainTetrisPiece', {
-    //   scrollTrigger: {
-    //     trigger: '#technologies',
-    //     start: () => `top-=${projectsSectionHeight / 4}`,
-    //     end: () => `bottom bottom-=${contactsSectionHeight}`,
-    //     scrub: true,
-    //   },
-    //   y: () =>
-    //     window.innerHeight * 0.5 +
-    //     aboutMeSectionHeight * 1.5 +
-    //     (tetrisPieceHeight * 2.56 - tetrisPieceHeight) / 2 +
-    //     projectsSectionHeight +
-    //     technologiesSectionHeight +
-    //     spacerHeight +
-    //     contactsSectionHeight,
-    //   x: 0,
-    //   rotation: 90,
-    // })
-    // .to('#mainTetrisPiece', {
-    //   scrollTrigger: {
-    //     trigger: '#bottom',
-    //     start: 'start-=200',
-    //     end: 'bottom bottom',
-    //     scrub: true,
-    //   },
-    //   y: () =>
-    //     window.innerHeight * 0.5 +
-    //     aboutMeSectionHeight * 1.5 +
-    //     (tetrisPieceHeight * 2.56 - tetrisPieceHeight) / 2 +
-    //     projectsSectionHeight +
-    //     technologiesSectionHeight +
-    //     contactsSectionHeight +
-    //     spacerHeight,
-    //   scale: 1.2,
-    // })
     .to('#mainTetrisPiece', {
       scrollTrigger: {
         trigger: '#bottom',
@@ -336,7 +280,7 @@ const tetrisPieceAnimationMobile = (tl: gsap.core.Timeline) => {
 };
 
 const tetrisAnimation = (tl: gsap.core.Timeline, context: gsap.Context) => {
-  const { isMobile } = context.conditions;
+  const { isMobile, isDesktop } = context.conditions;
 
   tl.to('#screen', {
     scrollTrigger: {
@@ -346,7 +290,17 @@ const tetrisAnimation = (tl: gsap.core.Timeline, context: gsap.Context) => {
       scrub: true,
       pin: true,
     },
-    scale: () => (isMobile ? 0.45 : 0.35),
+    scale: () => {
+      if (isMobile) {
+        return 0.45;
+      }
+
+      if (isDesktop) {
+        return 0.5;
+      }
+
+      return 0.35;
+    },
     y: () => {
       const tetrisControls = +gsap.getProperty('#footer', 'height');
       const tetrisScreenPlaceholder =
@@ -385,7 +339,17 @@ const tetrisAnimation = (tl: gsap.core.Timeline, context: gsap.Context) => {
       end: `bottom+=800`,
       scrub: true,
     },
-    width: () => (isMobile ? '94vw' : '400px'),
+    width: () => {
+      if (isMobile) {
+        return '94vw';
+      }
+
+      if (isDesktop) {
+        return '700px';
+      }
+
+      return '400px';
+    },
     height: () => (isMobile ? '96vh' : '94vh'),
   });
 
@@ -413,7 +377,8 @@ export const mainAnimation = () => {
   mm.add(
     {
       // set up any number of arbitrarily-named conditions. The function below will be called when ANY of them match.
-      isDesktop: `(min-width: ${breakPoint}px)`,
+      isDesktop: `(min-width: ${1920}px)`,
+      isLaptop: `(min-width: ${breakPoint}px)`,
       isMobile: `(max-width: ${breakPoint - 1}px)`,
       reduceMotion: '(prefers-reduced-motion: reduce)',
     },
