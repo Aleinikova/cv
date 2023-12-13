@@ -36,7 +36,7 @@ interface IContact {
 
 const Contacts = React.forwardRef<HTMLElement>((_, ref) => (
   <section
-    className='section flex min-h-[500px] w-full flex-col'
+    className='section z-10 flex w-full flex-col'
     id='contacts'
     ref={ref}
   >

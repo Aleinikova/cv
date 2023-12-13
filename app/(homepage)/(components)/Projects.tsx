@@ -47,21 +47,21 @@ const PROJECT_LIST = [
     startDate: '2020-04-01',
     endDate: '2021-07-01',
     stack: ['React', 'Redux toolkit', 'React-hook-forms', 'MUI'],
-    className: 'xl:bg-secondary xl:bg-opacity-50',
+    className: 'project-animated-mobile xl:bg-secondary xl:bg-opacity-50',
   },
   {
     title: 'PettyGigs',
     startDate: '2019-10-01',
     endDate: '2020-03-01',
     stack: ['React Native', 'Redux toolkit', 'React-hook-forms'],
-    className: 'xl:bg-secondary xl:bg-opacity-40',
+    className: 'project-animated-mobile xl:bg-secondary xl:bg-opacity-40',
   },
   {
     title: 'Loreal',
     startDate: '2017-01-01',
     endDate: '2019-09-01',
     stack: ['React', 'Redux'],
-    className: 'project-animated xl:opacity-0',
+    className: 'project-animated project-animated-mobile xl:opacity-0',
   },
 ];
 
@@ -100,15 +100,14 @@ const Projects = React.forwardRef<HTMLElement>((_, forwardRef) => {
     >
       <Headline component='h2'>Projects</Headline>
       <ul
-        className='projects-list flex flex-col flex-wrap items-center justify-center sm:flex-row sm:justify-start'
+        className='projects-list relative flex flex-col flex-wrap items-center justify-center sm:flex-row sm:justify-start'
         ref={ref}
       >
         {PROJECT_LIST.map(({ className, ...projectEl }, index) => (
-          <>
+          <React.Fragment key={projectEl.title}>
             <li
-              key={projectEl.title}
               className={clsx(
-                'flex h-[80vw] w-[80vw] p-6 sm:aspect-square sm:h-auto sm:w-1/2 xl:h-auto xl:w-1/5',
+                'project flex h-[80vw] w-[80vw] p-6 sm:aspect-square sm:h-auto sm:w-1/2 xl:h-auto xl:w-1/5',
                 className
               )}
             >
@@ -117,7 +116,7 @@ const Projects = React.forwardRef<HTMLElement>((_, forwardRef) => {
             {EMPTY_PIECES.includes(index) && (
               <div className='hidden aspect-square h-auto w-1/5 xl:flex' />
             )}
-          </>
+          </React.Fragment>
         ))}
       </ul>
     </section>

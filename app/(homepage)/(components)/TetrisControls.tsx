@@ -3,11 +3,11 @@ const TOP_CONTROLS = ['S/P', 'SOUND', 'ON/OFF', 'RESET'];
 function TetrisControls() {
   return (
     <div
-      className='absolute bottom-0 flex w-full scale-[4] flex-col items-center pb-3 '
+      className='absolute bottom-0 flex w-full flex-col items-center pb-3 xl:scale-[4] '
       id='footer'
     >
-      <div className='flex w-full max-w-[366px] flex-col items-center'>
-        <div className='h-[10vh] w-11/12 rounded-full border-6 border-black' />
+      <div className='flex w-full max-w-[90vh] flex-col items-center xl:max-w-[366px]'>
+        <div className='h-[8vh] w-11/12 rounded-full border-6 border-black xl:h-[10vh]' />
         {/* TOP BUTTONS ROW */}
         <div className='mt-4 flex w-3/4 items-center justify-between px-4'>
           {TOP_CONTROLS.map((title) => (

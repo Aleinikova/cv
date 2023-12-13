@@ -1,11 +1,8 @@
 import TetrisPiece from '@components/TetrisPiece';
 
-function Bottom() {
+function TetrisBottomPieces() {
   return (
-    <div
-      className='relative m-auto h-[960px] w-full max-w-[1440px] overflow-hidden md:block'
-      id='bottom'
-    >
+    <div className='relative m-auto hidden h-[600px] w-full max-w-[1440px] overflow-hidden md:block'>
       <TetrisPiece
         size='lg'
         variant='O'
@@ -83,4 +80,4 @@ function Bottom() {
   );
 }
 
-export default Bottom;
+export default TetrisBottomPieces;

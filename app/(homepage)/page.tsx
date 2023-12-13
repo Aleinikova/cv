@@ -15,12 +15,13 @@ import Header from '@components/Header';
 import TetrisPiece from '@components/TetrisPiece';
 
 import AboutMe from './(components)/AboutMe';
-import Bottom from './(components)/Bottom';
+import TetrisBottomPieces from './(components)/TetrisBottomPieces';
 import Contacts from './(components)/Contacts';
 import Projects from './(components)/Projects';
 import Technologies from './(components)/Technologies';
 import WelcomeBlock from './(components)/WelcomeBlock';
 import Tetris from './(components)/AnimatedTetris';
+import TetrisBottomPiecesMobile from './(components)/TetrisBottomPiecesMobile';
 
 export default function Home() {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -95,21 +96,33 @@ export default function Home() {
               <Header navigation={navigation} onClick={handleClick} />
               <main className='overflow-x-hidden bg-white'>
                 <WelcomeBlock />
-                <div className='relative mx-auto flex min-h-screen w-full max-w-7xl flex-col items-center justify-between lg:px-20 xl:px-0'>
+                <div className='relative mx-auto flex min-h-screen w-full max-w-7xl flex-col items-center justify-between px-4 md:px-6 lg:px-20 xl:px-10 2xl:px-0'>
                   <AboutMe ref={aboutRef} />
                   <Projects ref={projectsRef} />
                   <Technologies ref={technologiesRef} />
                   <Contacts ref={contactsRef} />
                   <TetrisPiece
-                    className='!absolute -top-[50vh] right-[60px] rotate-90 opacity-0'
+                    className='!absolute -top-[50vh] right-[60px] hidden rotate-90 opacity-0 xl:flex'
                     size='md'
                     variant='Z'
                     color='red'
                     id='mainTetrisPiece'
                   />
+
+                  <TetrisPiece
+                    className='!absolute right-[20px] top-0 xl:hidden'
+                    size='md'
+                    variant='L'
+                    color='red'
+                    id='mainTetrisPieceMobile'
+                  />
+                  <div id='spacer' className='h-[300px]' />
                 </div>
 
-                <Bottom />
+                <div id='bottom'>
+                  <TetrisBottomPieces />
+                  <TetrisBottomPiecesMobile />
+                </div>
               </main>
             </Scroller>
           </div>

@@ -40,7 +40,7 @@ const initFallingPiecesAnimation = (
       duration: 8 * durationCof,
       repeat: -1,
     },
-    3 * durationCof
+    3
   );
 
   tl.fromTo(
@@ -55,7 +55,7 @@ const initFallingPiecesAnimation = (
       duration: 8 * durationCof,
       repeat: -1,
     },
-    1.2 * durationCof
+    1.2
   );
 
   tl.fromTo(
@@ -70,7 +70,7 @@ const initFallingPiecesAnimation = (
       duration: 8 * durationCof,
       repeat: -1,
     },
-    2 * durationCof
+    2
   );
 
   tl.fromTo(
@@ -85,7 +85,7 @@ const initFallingPiecesAnimation = (
       duration: 8 * durationCof,
       repeat: -1,
     },
-    0.2 * durationCof
+    0.2
   );
 
   tl.fromTo(
@@ -102,7 +102,7 @@ const initFallingPiecesAnimation = (
       duration: 8 * durationCof,
       repeat: -1,
     },
-    3.2 * durationCof
+    3.2
   );
 
   tl.fromTo(
@@ -117,7 +117,7 @@ const initFallingPiecesAnimation = (
       duration: 8 * durationCof,
       repeat: -1,
     },
-    1.3 * durationCof
+    1.3
   );
 
   tl.fromTo(
@@ -132,7 +132,7 @@ const initFallingPiecesAnimation = (
       duration: 8 * durationCof,
       repeat: -1,
     },
-    3.6 * durationCof
+    3.6
   );
 
   tl.fromTo(
@@ -149,7 +149,7 @@ const initFallingPiecesAnimation = (
       duration: 8 * durationCof,
       repeat: -1,
     },
-    0.6 * durationCof
+    0.6
   );
 };
 
@@ -210,7 +210,7 @@ function AnimatedBackground() {
 
   return (
     <>
-      <div className='absolute left-0 top-0 z-10 h-[15%] w-full bg-gradient-to-b from-white to-transparent' />
+      <div className='absolute left-0 top-0 z-10 h-[15%] w-full  bg-gradient-to-b from-white to-transparent' />
       <div ref={animationContainerRef}>
         <Tetris
           variant='L'
@@ -273,7 +273,7 @@ function AnimatedBackground() {
           color='blue'
           className={clsx(
             'tetris tetris-8',
-            '!absolute left-[90%] top-[-20vh]'
+            '!absolute left-[84%] top-[-20vh] lg:left-[90%]'
           )}
         />
         <Tetris
@@ -281,7 +281,7 @@ function AnimatedBackground() {
           color='yellow'
           className={clsx(
             'tetris tetris-9',
-            '!absolute left-[92%] top-[-20vh] rotate-90'
+            '!absolute left-[80%] top-[-20vh] rotate-90 lg:left-[92%]'
           )}
         />
       </div>

@@ -31,7 +31,11 @@ const TOOLS = [
 ];
 
 const Technologies = React.forwardRef<HTMLElement>((_, ref) => (
-  <section className='section flex w-full flex-col' id='technologies' ref={ref}>
+  <section
+    className='section z-10 flex w-full flex-col'
+    id='technologies'
+    ref={ref}
+  >
     <Headline component='h2'>Technologies</Headline>
     <div className='flex flex-col sm:flex-row'>
       <ul className='mb-6 flex flex-1 flex-col'>
