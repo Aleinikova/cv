@@ -22,6 +22,7 @@ import Technologies from './(components)/Technologies';
 import WelcomeBlock from './(components)/WelcomeBlock';
 import Tetris from './(components)/AnimatedTetris';
 import TetrisBottomPiecesMobile from './(components)/TetrisBottomPiecesMobile';
+import TetrisBottomPiecesTablet from './(components)/TetrisBottomPiecesTablet';
 
 export default function Home() {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -96,7 +97,10 @@ export default function Home() {
               <Header navigation={navigation} onClick={handleClick} />
               <main className='overflow-x-hidden bg-white'>
                 <WelcomeBlock />
-                <div className='relative mx-auto flex min-h-screen w-full max-w-7xl flex-col items-center justify-between px-4 md:px-6 lg:px-20 xl:px-10 2xl:px-0'>
+                <div
+                  className='relative mx-auto flex min-h-screen w-full max-w-7xl flex-col items-center justify-between px-4 md:px-6 lg:px-20 xl:px-10 2xl:px-0'
+                  id='mainContent'
+                >
                   <AboutMe ref={aboutRef} />
                   <Projects ref={projectsRef} />
                   <Technologies ref={technologiesRef} />
@@ -110,17 +114,26 @@ export default function Home() {
                   />
 
                   <TetrisPiece
-                    className='!absolute right-[20px] top-0 xl:hidden'
+                    className='!absolute right-[20px] top-0 sm:hidden'
                     size='md'
                     variant='L'
                     color='red'
                     id='mainTetrisPieceMobile'
+                  />
+
+                  <TetrisPiece
+                    className='!absolute right-[120px] top-0 hidden rotate-180 sm:flex xl:hidden'
+                    size='md'
+                    variant='J'
+                    color='red'
+                    id='mainTetrisPieceTablet'
                   />
                   <div id='spacer' className='h-[300px]' />
                 </div>
 
                 <div id='bottom'>
                   <TetrisBottomPieces />
+                  <TetrisBottomPiecesTablet />
                   <TetrisBottomPiecesMobile />
                 </div>
               </main>

@@ -2,7 +2,7 @@ import TetrisPiece from '@components/TetrisPiece';
 
 function TetrisBottomPiecesMobile() {
   return (
-    <div className='relative m-auto h-[260px] w-full max-w-[1440px] overflow-hidden md:hidden'>
+    <div className='relative m-auto h-[260px] w-full max-w-[1440px] overflow-hidden sm:hidden'>
       <TetrisPiece
         size='sm'
         variant='O'
