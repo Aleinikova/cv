@@ -6,11 +6,9 @@ import TetrisControls from './TetrisControls';
 
 import { mainAnimation } from '../utils';
 
-interface IAnimatedTetris {
-  ctx: gsap.Context;
-}
+function AnimatedTetris() {
+  const mm = gsap.matchMedia();
 
-function AnimatedTetris({ ctx }: IAnimatedTetris) {
   const [isClient, setIsClient] = useState(false);
 
   useEffect(() => {
@@ -19,25 +17,40 @@ function AnimatedTetris({ ctx }: IAnimatedTetris) {
 
   useLayoutEffect(() => {
     if (isClient) {
-      gsap.registerPlugin(ScrollTrigger);
+      mm.add(
+        {
+          isDesktop: `(min-width: ${1920}px) and (prefers-reduced-motion: no-preference)`,
+          isLaptop: `(min-width: 1300px) and (prefers-reduced-motion: no-preference)`,
+          isTablet:
+            '(max-width: 1279px) and (prefers-reduced-motion: no-preference)',
+          isMobile: `(max-width: 639px)`,
+          reduceMotion: '(prefers-reduced-motion: reduce)',
+        },
+        (context) => {
+          const tl = gsap.timeline({
+            defaults: {
+              immediateRender: false,
+            },
+          });
 
-      ctx.add(() => {
-        mainAnimation();
-      });
+          mainAnimation(context, tl);
+
+          return () => {
+            tl.clear();
+          };
+        }
+      );
     }
 
     return () => {
-      ctx.revert();
+      mm.revert();
     };
-  }, [ctx, isClient]);
+  }, [mm, isClient]);
 
   useEffect(() => {
     const handleResize = () => {
-      ctx.revert();
-
-      ctx.add(() => {
-        mainAnimation();
-      });
+      gsap.matchMediaRefresh();
+      ScrollTrigger.refresh();
     };
 
     window.addEventListener('resize', handleResize);
@@ -45,7 +58,7 @@ function AnimatedTetris({ ctx }: IAnimatedTetris) {
     return () => {
       window.removeEventListener('resize', handleResize);
     };
-  }, [ctx]);
+  }, []);
 
   return (
     <div

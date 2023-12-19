@@ -7,8 +7,9 @@ import {
   useCallback,
   MutableRefObject,
 } from 'react';
-import gsap from 'gsap';
+import ScrollTrigger from 'gsap/ScrollTrigger';
 import type { Scrollbar } from 'smooth-scrollbar/scrollbar';
+import gsap from 'gsap';
 
 import Scroller from '@components/Scroller';
 import Header from '@components/Header';
@@ -26,8 +27,6 @@ import TetrisBottomPiecesTablet from './(components)/TetrisBottomPiecesTablet';
 
 export default function Home() {
   const containerRef = useRef<HTMLDivElement>(null);
-
-  const ctx = useMemo(() => gsap.context(() => {}, containerRef), []);
 
   const scrollbarRef = useRef<Scrollbar>();
 
@@ -84,9 +83,25 @@ export default function Home() {
     scrollbarRef.current.scrollIntoView(el.current);
   }, []);
 
+  const mainTetrisPieceRef = useRef();
+  const mainTetrisPieceMobileRef = useRef();
+  const mainTetrisPieceTabletRef = useRef();
+  const bottomRef = useRef();
+
+  useEffect(() => {
+    gsap.registerPlugin(ScrollTrigger);
+
+    ScrollTrigger.saveStyles([
+      mainTetrisPieceRef.current,
+      mainTetrisPieceMobileRef.current,
+      mainTetrisPieceTabletRef.current,
+      bottomRef.current,
+    ]);
+  }, []);
+
   return (
     <div ref={containerRef} className='h-screen overflow-hidden'>
-      <Tetris ctx={ctx} />
+      <Tetris />
       <div
         id='screen'
         className='relative flex h-screen w-screen justify-center overflow-hidden'
@@ -95,7 +110,7 @@ export default function Home() {
           <div className='relative h-screen w-screen'>
             <Scroller ref={scrollbarRef}>
               <Header navigation={navigation} onClick={handleClick} />
-              <main className='overflow-x-hidden bg-white'>
+              <main className='w-[100vw] overflow-x-hidden bg-white'>
                 <WelcomeBlock />
                 <div
                   className='relative mx-auto flex min-h-screen w-full max-w-7xl flex-col items-center justify-between px-4 md:px-6 lg:px-20 xl:px-10 2xl:px-0'
@@ -131,7 +146,7 @@ export default function Home() {
                   <div id='spacer' className='h-[300px]' />
                 </div>
 
-                <div id='bottom'>
+                <div id='bottom' ref={bottomRef} className='min-w-full'>
                   <TetrisBottomPieces />
                   <TetrisBottomPiecesTablet />
                   <TetrisBottomPiecesMobile />
