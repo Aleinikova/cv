@@ -1,10 +1,10 @@
 import TetrisPiece from '@components/TetrisPiece';
 
-function Bottom() {
+function TetrisBottomPiecesDesktop() {
   return (
     <div
-      className='relative m-auto h-[960px] w-full max-w-[1440px] overflow-hidden md:block'
-      id='bottom'
+      className='relative m-auto hidden h-[600px] w-full max-w-[1440px] overflow-hidden xl:block'
+      id='bottomDesktopPieces'
     >
       <TetrisPiece
         size='lg'
@@ -83,4 +83,4 @@ function Bottom() {
   );
 }
 
-export default Bottom;
+export default TetrisBottomPiecesDesktop;

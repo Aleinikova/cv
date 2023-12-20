@@ -28,10 +28,6 @@ function AnimatedTetris() {
         },
         (context) => {
           mainAnimation(context);
-
-          // return () => {
-          //   tl.clear();
-          // };
         }
       );
     }

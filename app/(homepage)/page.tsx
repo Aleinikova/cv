@@ -22,8 +22,6 @@ import Projects from './(components)/Projects';
 import Technologies from './(components)/Technologies';
 import WelcomeBlock from './(components)/WelcomeBlock';
 import Tetris from './(components)/AnimatedTetris';
-import TetrisBottomPiecesMobile from './(components)/TetrisBottomPiecesMobile';
-import TetrisBottomPiecesTablet from './(components)/TetrisBottomPiecesTablet';
 
 export default function Home() {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -146,11 +144,7 @@ export default function Home() {
                   <div id='spacer' className='h-[300px]' />
                 </div>
 
-                <div id='bottom' ref={bottomRef} className=' min-w-full'>
-                  <TetrisBottomPieces />
-                  <TetrisBottomPiecesTablet />
-                  <TetrisBottomPiecesMobile />
-                </div>
+                <TetrisBottomPieces ref={bottomRef} />
               </main>
             </Scroller>
           </div>
