@@ -56,7 +56,7 @@ function TetrisControls() {
         </div>
 
         <div className='mt-14 font-secondary text-xs text-white'>
-          designed by Valeria Mahilevich
+          designed by Waleria Mogilewicz
         </div>
       </div>
     </div>

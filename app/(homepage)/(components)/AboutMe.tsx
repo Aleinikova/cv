@@ -25,7 +25,7 @@ const AboutMe = React.forwardRef<HTMLElement>((_, ref) => (
       </div>
       <div className='ml-6'>
         <h3 className='font-secondary text-2xl font-medium'>
-          Valeria Mahilevich
+          Waleria Mogilewicz
         </h3>
         <p className='mb-6 text-sm font-light leading-6'>
           Frontend developer, 27 years old
