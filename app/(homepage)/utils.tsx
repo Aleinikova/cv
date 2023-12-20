@@ -443,7 +443,11 @@ const tetrisPieceAnimationTablet = () => {
           tetrisPieceHeight,
         scale: 1,
         x: 0,
-        duration: () => (tetrisPieceHeight * tetrisPieceScale) / 3,
+        duration: () =>
+          projectsSectionHeight +
+          (projectElHeight * 3) / 2 -
+          (+gsap.getProperty('.projects-list', 'offsetTop') +
+            projectElHeight * 2),
       },
       '<'
     )
@@ -465,7 +469,8 @@ const tetrisPieceAnimationTablet = () => {
       duration: () =>
         technologiesSectionHeight +
         contactsSectionHeight +
-        spacerHeight -
+        spacerHeight +
+        bottomSectionHeight -
         screenHeight,
     })
     // show shadow piece
