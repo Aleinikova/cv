@@ -50,6 +50,46 @@ export default function Home() {
     };
   }, []);
 
+  const touchStart = useRef(0);
+
+  useEffect(() => {
+    const containerEl = containerRef.current;
+
+    const handleTouchStart = (e) => {
+      touchStart.current = e.changedTouches[0].clientY;
+    };
+
+    containerEl.addEventListener('touchstart', handleTouchStart);
+
+    return () => {
+      containerEl.addEventListener('touchstart', handleTouchStart);
+    };
+  }, []);
+
+  useEffect(() => {
+    const containerEl = containerRef.current;
+
+    const handleTouchMove = (e) => {
+      if (
+        scrollbarRef.current &&
+        !scrollbarRef.current.contentEl.contains(e.target as HTMLElement)
+      ) {
+        scrollbarRef.current.setPosition(
+          scrollbarRef.current?.scrollLeft,
+          (scrollbarRef.current?.scrollTop || 0) +
+            touchStart.current -
+            e.changedTouches[0].clientY
+        );
+      }
+    };
+
+    containerEl.addEventListener('touchmove', handleTouchMove);
+
+    return () => {
+      containerEl.addEventListener('touchmove', handleTouchMove);
+    };
+  }, []);
+
   const aboutRef = useRef();
   const projectsRef = useRef();
   const technologiesRef = useRef();
