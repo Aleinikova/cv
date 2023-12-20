@@ -4,7 +4,7 @@ import Image from 'next/image';
 
 const AboutMe = React.forwardRef<HTMLElement>((_, ref) => (
   <section
-    className='section z-10 flex w-full flex-col xl:px-8'
+    className='section z-10 flex min-h-screen w-full flex-col justify-center xl:px-8'
     id='aboutMe'
     ref={ref}
   >

@@ -27,17 +27,11 @@ function AnimatedTetris() {
           reduceMotion: '(prefers-reduced-motion: reduce)',
         },
         (context) => {
-          const tl = gsap.timeline({
-            defaults: {
-              immediateRender: false,
-            },
-          });
+          mainAnimation(context);
 
-          mainAnimation(context, tl);
-
-          return () => {
-            tl.clear();
-          };
+          // return () => {
+          //   tl.clear();
+          // };
         }
       );
     }

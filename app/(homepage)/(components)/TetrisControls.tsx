@@ -6,7 +6,7 @@ function TetrisControls() {
       className='absolute bottom-0 flex w-full flex-col items-center pb-3 xl:scale-[4] '
       id='footer'
     >
-      <div className='flex w-full max-w-[90vh] flex-col items-center sm:max-w-[45vh] xl:max-w-[366px] 2xl:max-w-[405px]'>
+      <div className='flex w-full max-w-[90vh] flex-col items-center sm:max-w-[45vh] xl:max-w-[47vh]'>
         <div className='h-[8vh] w-11/12 rounded-full border-6 border-black xl:h-[10vh] 2xl:max-h-32' />
         {/* TOP BUTTONS ROW */}
         <div className='mt-4 flex w-3/4 items-center justify-between px-4'>

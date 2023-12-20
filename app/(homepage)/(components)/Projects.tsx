@@ -94,7 +94,7 @@ const Projects = React.forwardRef<HTMLElement>((_, forwardRef) => {
 
   return (
     <section
-      className='section relative z-10 flex w-full flex-col'
+      className='section relative z-10 flex min-h-screen w-full flex-col justify-center'
       id='projects'
       ref={forwardRef}
     >

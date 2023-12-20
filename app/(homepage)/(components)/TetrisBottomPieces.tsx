@@ -2,7 +2,10 @@ import TetrisPiece from '@components/TetrisPiece';
 
 function TetrisBottomPieces() {
   return (
-    <div className='relative m-auto hidden h-[600px] w-full max-w-[1440px] overflow-hidden xl:block'>
+    <div
+      className='relative m-auto hidden h-[600px] w-full max-w-[1440px] overflow-hidden xl:block'
+      id='bottomDesktopPieces'
+    >
       <TetrisPiece
         size='lg'
         variant='O'
