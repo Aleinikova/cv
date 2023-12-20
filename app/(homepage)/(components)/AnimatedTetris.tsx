@@ -23,7 +23,7 @@ function AnimatedTetris() {
           isLaptop: `(min-width: 1300px) and (prefers-reduced-motion: no-preference)`,
           isTablet:
             '(max-width: 1279px) and (prefers-reduced-motion: no-preference)',
-          isMobile: `(max-width: 639px)`,
+          isMobile: `(max-width: 639px) and (prefers-reduced-motion: no-preference)`,
           reduceMotion: '(prefers-reduced-motion: reduce)',
         },
         (context) => {

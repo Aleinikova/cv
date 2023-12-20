@@ -494,7 +494,7 @@ const tetrisPieceAnimationTablet = () => {
 };
 
 export const tetrisAnimation = (context: gsap.Context) => {
-  const { isMobile } = context.conditions;
+  const { isMobile, isTablet } = context.conditions;
 
   const screenHeight = window.innerHeight;
 
@@ -523,8 +523,36 @@ export const tetrisAnimation = (context: gsap.Context) => {
       scrub: true,
       pin: true,
       pinSpacing: true,
-      markers: true,
     },
+  });
+
+  gsap.set('#footer', {
+    scale: () => {
+      if (isMobile) {
+        return 1;
+      }
+
+      if (isTablet) {
+        return 2;
+      }
+
+      return 4;
+    },
+  });
+
+  gsap.set('#tetris', {
+    height: () => {
+      if (isMobile) {
+        return '200vh';
+      }
+
+      return '350vh';
+    },
+    width: '100vw',
+    right: '50%',
+    top: '50%',
+    xPercent: -50,
+    yPercent: -50,
   });
 
   tl.to('#screen', {
