@@ -1,6 +1,8 @@
 import gsap from 'gsap';
 import ScrollTrigger from 'gsap/ScrollTrigger';
 
+gsap.registerPlugin(ScrollTrigger);
+
 const tetrisPieceAnimationDesktop = () => {
   const screenWidth = window.innerWidth;
   const screenHeight = window.innerHeight;
@@ -24,18 +26,11 @@ const tetrisPieceAnimationDesktop = () => {
   const projectsSectionHeight = +gsap.getProperty('#projects', 'height');
   const projectElHeight = +gsap.getProperty('.project', 'height');
 
-  const animationContainerHeight =
-    +gsap.getProperty('#mainContent', 'height') +
-    +gsap.getProperty('#bottom', 'height') -
-    screenHeight;
-
   const tetrisPieceScale = projectElHeight / 100;
 
   const tetrisWidthInBottomSection = 120;
 
   const tetrisPieceRightPosition = 60;
-
-  gsap.registerPlugin(ScrollTrigger);
 
   ScrollTrigger.create({
     trigger: '#aboutMe',
@@ -44,7 +39,6 @@ const tetrisPieceAnimationDesktop = () => {
     end: 'center top',
     scrub: true,
     pinSpacing: true,
-    markers: true,
   });
 
   ScrollTrigger.create({
@@ -65,8 +59,7 @@ const tetrisPieceAnimationDesktop = () => {
       endTrigger: '#bottom',
       start: 'top top',
       scrub: true,
-      end: () => `bottom bottom`,
-      markers: true,
+      end: 'bottom bottom',
     },
   });
 
@@ -120,9 +113,9 @@ const tetrisPieceAnimationDesktop = () => {
       '.project-animated',
       {
         opacity: 1,
-        duration: (projectsSectionHeight / animationContainerHeight) * 10,
+        duration: projectsSectionHeight * 0.1,
       },
-      `>-${(projectsSectionHeight / animationContainerHeight) * 10}`
+      `>-${projectsSectionHeight * 0.1}`
     )
     // move piece to the bottom of projects section
     .to(
@@ -204,7 +197,7 @@ const tetrisPieceAnimationDesktop = () => {
 };
 
 // TODO: remove absolute numbers
-const tetrisPieceAnimationMobile = (tl: gsap.core.Timeline) => {
+const tetrisPieceAnimationMobile = () => {
   const screenWidth = window.innerWidth;
   const screenHeight = window.innerHeight;
 
@@ -230,9 +223,29 @@ const tetrisPieceAnimationMobile = (tl: gsap.core.Timeline) => {
 
   const tetrisPieceRightPosition = 20;
 
-  const tetrisWidthInBottomSection = 48;
+  const tetrisBlockWidthInBottomSection = 48;
 
-  tl.set('#mainTetrisPieceMobile', {
+  const tl = gsap.timeline({
+    defaults: {
+      immediateRender: false,
+    },
+    scrollTrigger: {
+      trigger: '#mainContent',
+      endTrigger: '#bottom',
+      start: () =>
+        `start+=${
+          aboutMeSectionHeight +
+          +gsap.getProperty('.projects-list', 'offsetTop') +
+          projectElHeight * 6
+        } start`,
+      scrub: true,
+      end: () => `bottom bottom`,
+      markers: true,
+    },
+  });
+
+  // set initial tetris piece position
+  gsap.set('#mainTetrisPieceMobile', {
     y: () =>
       aboutMeSectionHeight +
       +gsap.getProperty('.projects-list', 'offsetTop') +
@@ -245,70 +258,62 @@ const tetrisPieceAnimationMobile = (tl: gsap.core.Timeline) => {
       tetrisPieceRightPosition +
       (tetrisPieceWidth * tetrisPieceScale - tetrisPieceWidth) / 2,
     scale: tetrisPieceScale,
+  });
+
+  // hide project when piece gets smaller
+  tl.to('.project-animated-mobile', {
+    opacity: 0,
+    duration: () => projectElHeight / 4,
   })
+    // get piece smaller and move to technologies section
+    .to(
+      '#mainTetrisPieceMobile',
+      {
+        y: () => aboutMeSectionHeight + projectsSectionHeight,
+        scale: 1,
+        x: 0,
+        duration: () => (tetrisPieceHeight * tetrisPieceScale) / 3,
+      },
+      '<'
+    )
+    // move piece through technologies section
     .to('#mainTetrisPieceMobile', {
-      scrollTrigger: {
-        trigger: '#projects',
-        start: () => `bottom bottom-=${(projectElHeight * 3) / 2}`,
-        end: `bottom`,
-        scrub: true,
-        pin: true,
-        pinSpacing: true,
-        invalidateOnRefresh: true,
+      y: () => {
+        const offsetBecauseOfScale =
+          (tetrisPieceHeight - tetrisPieceHeight * 0.48) / 2;
+
+        return (
+          aboutMeSectionHeight +
+          projectsSectionHeight +
+          technologiesSectionHeight * 0.8 -
+          offsetBecauseOfScale -
+          tetrisPieceHeight * 0.48
+        );
       },
-      y: () =>
-        aboutMeSectionHeight +
-        projectsSectionHeight +
-        (screenHeight - (projectElHeight * 3) / 2 - tetrisPieceHeight),
-      scale: 1,
-      x: 0,
-    })
-    .to('.project-animated-mobile', {
-      scrollTrigger: {
-        trigger: '#projects',
-        start: 'bottom bottom',
-        end: `bottom+=100`,
-        scrub: true,
-        invalidateOnRefresh: true,
-      },
-      opacity: 0,
-    })
-    .to('#mainTetrisPieceMobile', {
-      scrollTrigger: {
-        trigger: '#technologies',
-        start: () => `top-=${tetrisPieceHeight / 2}`,
-        end: () => `bottom bottom-=${contactsSectionHeight * 0.9}`,
-        scrub: true,
-        invalidateOnRefresh: true,
-      },
-      y: () =>
-        aboutMeSectionHeight +
-        projectsSectionHeight +
-        (screenHeight - (projectElHeight * 3) / 2 - tetrisPieceHeight) +
-        technologiesSectionHeight +
-        (tetrisPieceHeight - tetrisPieceHeight * 0.48) / 2,
       scale: 0.48,
+      duration: () => technologiesSectionHeight * 0.8,
     })
     .to('#mainTetrisPieceMobile', {
-      scrollTrigger: {
-        trigger: '#contacts',
-        start: () => `bottom bottom`,
-        end: () => `bottom bottom-=${spacerHeight + bottomSectionHeight * 0.8}`,
-        scrub: true,
-        invalidateOnRefresh: true,
+      y: () => {
+        const offsetBecauseOfScale =
+          (tetrisPieceHeight - tetrisPieceHeight * 0.48) / 2;
+
+        const offsetBecauseOfRotate = (tetrisPieceHeight * 0.48) / 3 / 2;
+
+        const offsetFromBottomSectionTop = tetrisBlockWidthInBottomSection * 2;
+
+        return (
+          aboutMeSectionHeight +
+          projectsSectionHeight +
+          technologiesSectionHeight +
+          contactsSectionHeight +
+          spacerHeight -
+          offsetBecauseOfScale -
+          tetrisPieceHeight * 0.48 +
+          offsetBecauseOfRotate +
+          offsetFromBottomSectionTop
+        );
       },
-      y: () =>
-        aboutMeSectionHeight +
-        projectsSectionHeight +
-        (screenHeight - (projectElHeight * 3) / 2 - tetrisPieceHeight) +
-        technologiesSectionHeight +
-        contactsSectionHeight +
-        spacerHeight +
-        (tetrisPieceHeight - tetrisPieceHeight * 0.48) / 2 +
-        // TODO: check below
-        tetrisWidthInBottomSection / 2 +
-        tetrisWidthInBottomSection * 2 +
-        tetrisPieceRightPosition,
       rotate: 90,
       x: () =>
         tetrisPieceRightPosition +
@@ -316,27 +321,27 @@ const tetrisPieceAnimationMobile = (tl: gsap.core.Timeline) => {
         (screenWidth -
           +gsap.getProperty('#mainTetrisPieceShadowMobile', 'offsetLeft') -
           tetrisPieceWidth * 0.48),
+      duration: () =>
+        technologiesSectionHeight * 0.2 +
+        contactsSectionHeight +
+        spacerHeight +
+        bottomSectionHeight -
+        screenHeight,
     })
-    .to('#mainTetrisPieceMobile', {
-      scrollTrigger: {
-        trigger: '#bottom',
-        start: 'bottom bottom',
-        end: 'bottom+=1 bottom',
-        scrub: true,
-        invalidateOnRefresh: true,
-      },
-      opacity: 0,
-    })
+    // show shadow piece
     .to('#mainTetrisPieceShadowMobile', {
-      scrollTrigger: {
-        trigger: '#bottom',
-        start: 'bottom bottom',
-        end: 'bottom+=1 bottom',
-        scrub: true,
-        invalidateOnRefresh: true,
-      },
       opacity: 1,
-    });
+      duration: 0,
+    })
+    // hide main piece
+    .to(
+      '#mainTetrisPieceMobile',
+      {
+        opacity: 0,
+        duration: 0,
+      },
+      '<'
+    );
 };
 
 const tetrisPieceAnimationTablet = (tl: gsap.core.Timeline) => {
@@ -575,7 +580,7 @@ export const mainAnimation = (
   });
 
   if (isMobile) {
-    tetrisPieceAnimationMobile(tl);
+    tetrisPieceAnimationMobile();
   } else if (isTablet) {
     tetrisPieceAnimationTablet(tl);
   } else {

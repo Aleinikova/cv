@@ -146,7 +146,7 @@ export default function Home() {
                   <div id='spacer' className='h-[300px]' />
                 </div>
 
-                <div id='bottom' ref={bottomRef} className='min-w-full'>
+                <div id='bottom' ref={bottomRef} className=' min-w-full'>
                   <TetrisBottomPieces />
                   <TetrisBottomPiecesTablet />
                   <TetrisBottomPiecesMobile />
