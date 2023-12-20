@@ -1,171 +1,28 @@
 'use client';
 
 import clsx from 'clsx';
-import { useEffect, useRef, useMemo, useState, useCallback } from 'react';
+import { useEffect, useRef, useMemo, useCallback } from 'react';
 import gsap from 'gsap';
 
+import useOnResize from 'hooks/useOnResize';
+import useIsClient from 'hooks/useIsClient';
+
 import Tetris from '@components/TetrisPiece';
-
-const initFallingPiecesAnimation = (
-  tl: ReturnType<typeof gsap.timeline>,
-  durationCof: number = 1
-) => {
-  tl.fromTo(
-    '.tetris-1',
-    {
-      opacity: 1,
-      transform: 'translateY(-20vh)',
-      rotate: 180,
-    },
-    {
-      opacity: 0,
-      transform: 'translateY(110vh)',
-      rotate: 180,
-      duration: 8 * durationCof,
-      repeat: -1,
-    }
-  );
-
-  tl.fromTo(
-    '.tetris-2',
-    {
-      opacity: 1,
-      transform: 'translateY(-20vh)',
-      rotate: -90,
-    },
-    {
-      opacity: 0,
-      transform: 'translateY(110vh)',
-      rotate: -90,
-      duration: 8 * durationCof,
-      repeat: -1,
-    },
-    3
-  );
-
-  tl.fromTo(
-    '.tetris-3',
-    {
-      opacity: 1,
-      transform: 'translateY(-20vh)',
-    },
-    {
-      opacity: 0,
-      transform: 'translateY(110vh)',
-      duration: 8 * durationCof,
-      repeat: -1,
-    },
-    1.2
-  );
-
-  tl.fromTo(
-    '.tetris-4',
-    {
-      opacity: 1,
-      transform: 'translateY(-20vh)',
-    },
-    {
-      opacity: 0,
-      transform: 'translateY(110vh)',
-      duration: 8 * durationCof,
-      repeat: -1,
-    },
-    2
-  );
-
-  tl.fromTo(
-    '.tetris-5',
-    {
-      opacity: 1,
-      transform: 'translateY(-20vh)',
-    },
-    {
-      opacity: 0,
-      transform: 'translateY(110vh)',
-      duration: 8 * durationCof,
-      repeat: -1,
-    },
-    0.2
-  );
-
-  tl.fromTo(
-    '.tetris-6',
-    {
-      opacity: 1,
-      transform: 'translateY(-20vh)',
-      rotate: 90,
-    },
-    {
-      opacity: 0,
-      transform: 'translateY(110vh)',
-      rotate: 90,
-      duration: 8 * durationCof,
-      repeat: -1,
-    },
-    3.2
-  );
-
-  tl.fromTo(
-    '.tetris-7',
-    {
-      opacity: 1,
-      transform: 'translateY(-20vh)',
-    },
-    {
-      opacity: 0,
-      transform: 'translateY(110vh)',
-      duration: 8 * durationCof,
-      repeat: -1,
-    },
-    1.3
-  );
-
-  tl.fromTo(
-    '.tetris-8',
-    {
-      opacity: 1,
-      transform: 'translateY(-20vh)',
-    },
-    {
-      opacity: 0,
-      transform: 'translateY(110vh)',
-      duration: 8 * durationCof,
-      repeat: -1,
-    },
-    3.6
-  );
-
-  tl.fromTo(
-    '.tetris-9',
-    {
-      opacity: 1,
-      transform: 'translateY(-20vh)',
-      rotate: 90,
-    },
-    {
-      opacity: 0,
-      transform: 'translateY(110vh)',
-      rotate: 90,
-      duration: 8 * durationCof,
-      repeat: -1,
-    },
-    0.6
-  );
-};
+import { initFallingPiecesAnimation } from './animation';
 
 const HEIGHT_FOR_ANIMATION_CALCULATION = 980;
 
-function AnimatedBackground() {
+interface AnimatedBackgroundProps {
+  isPaused?: boolean;
+}
+
+function AnimatedBackground({ isPaused }: AnimatedBackgroundProps) {
   const animationContainerRef = useRef<HTMLDivElement>(null);
 
   const ctx = useMemo(() => gsap.context(() => {}, animationContainerRef), []);
   const animationTimeline = useRef<ReturnType<typeof gsap.timeline>>();
 
-  const [isClient, setIsClient] = useState(false);
-
-  useEffect(() => {
-    setIsClient(true);
-  }, []);
+  const isClient = useIsClient();
 
   const initAnimation = useCallback(() => {
     ctx.add(() => {
@@ -178,7 +35,7 @@ function AnimatedBackground() {
     }, animationContainerRef);
   }, [ctx]);
 
-  // // clear animation
+  // init animation
   useEffect(() => {
     if (isClient) {
       initAnimation();
@@ -190,26 +47,32 @@ function AnimatedBackground() {
   }, [ctx, initAnimation, isClient]);
 
   // reset animation on resize
-  useEffect(() => {
-    const handleResize = () => {
-      ctx.revert();
+  const handleResize = useCallback(() => {
+    ctx.revert();
 
-      initAnimation();
-    };
-
-    window.addEventListener('resize', handleResize);
-
-    return () => {
-      window.removeEventListener('resize', handleResize);
-    };
+    initAnimation();
   }, [ctx, initAnimation]);
+
+  useOnResize(handleResize);
+
+  useEffect(() => {
+    if (isPaused) {
+      animationTimeline.current?.pause();
+    }
+  }, [isPaused]);
+
+  useEffect(() => {
+    if (!isPaused && animationTimeline.current?.paused()) {
+      animationTimeline.current?.play();
+    }
+  }, [isPaused]);
 
   if (!isClient) {
     return null;
   }
 
   return (
-    <>
+    <div>
       <div className='absolute left-0 top-0 z-10 h-[15%] w-full  bg-gradient-to-b from-white to-transparent' />
       <div ref={animationContainerRef}>
         <Tetris
@@ -286,7 +149,7 @@ function AnimatedBackground() {
         />
       </div>
       <div className='absolute bottom-0 left-0 h-[25%] w-full bg-gradient-to-b from-transparent to-white' />
-    </>
+    </div>
   );
 }
 
