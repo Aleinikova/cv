@@ -200,6 +200,8 @@ const tetrisPieceAnimationDesktop = () => {
       },
       '<'
     );
+
+  return tl;
 };
 
 // TODO: remove absolute numbers
@@ -246,7 +248,6 @@ const tetrisPieceAnimationMobile = () => {
         } start`,
       scrub: true,
       end: () => `bottom bottom`,
-      markers: true,
     },
   });
 
@@ -348,6 +349,8 @@ const tetrisPieceAnimationMobile = () => {
       },
       '<'
     );
+
+  return tl;
 };
 
 const tetrisPieceAnimationTablet = () => {
@@ -402,7 +405,6 @@ const tetrisPieceAnimationTablet = () => {
         } start`,
       scrub: true,
       end: () => `bottom bottom`,
-      markers: true,
     },
   });
 
@@ -487,9 +489,11 @@ const tetrisPieceAnimationTablet = () => {
       },
       '<'
     );
+
+  return tl;
 };
 
-const tetrisAnimation = (tl: gsap.core.Timeline, context: gsap.Context) => {
+export const tetrisAnimation = (context: gsap.Context) => {
   const { isMobile } = context.conditions;
 
   const screenHeight = window.innerHeight;
@@ -508,15 +512,22 @@ const tetrisAnimation = (tl: gsap.core.Timeline, context: gsap.Context) => {
       tetrisScreenPaddings) /
     contentScreenHeight;
 
-  tl.to('#screen', {
+  const tl = gsap.timeline({
+    defaults: {
+      immediateRender: false,
+    },
     scrollTrigger: {
       trigger: '#bottom',
       start: 'bottom bottom',
       end: `bottom+=800`,
       scrub: true,
       pin: true,
-      invalidateOnRefresh: true,
+      pinSpacing: true,
+      markers: true,
     },
+  });
+
+  tl.to('#screen', {
     scale: () => scale,
     y: () => {
       const tetrisScreenPlaceholder =
@@ -546,69 +557,57 @@ const tetrisAnimation = (tl: gsap.core.Timeline, context: gsap.Context) => {
         tetrisVerticalMargin
       );
     },
+    duration: 800,
   })
-    .to('#content', {
-      scrollTrigger: {
-        trigger: '#bottom',
-        start: 'bottom bottom',
-        end: `bottom+=800`,
-        scrub: true,
-        invalidateOnRefresh: true,
+    .to(
+      '#content',
+      {
+        width: '700px',
+        overflow: 'hidden',
+        duration: 800,
       },
-      width: '700px',
-      overflow: 'hidden',
-    })
-    .to('#tetris', {
-      scrollTrigger: {
-        trigger: '#bottom',
-        start: 'bottom bottom',
-        end: `bottom+=800`,
-        scrub: true,
-        invalidateOnRefresh: true,
-      },
-      width: () => {
-        if (isMobile) {
-          return '94vw';
-        }
+      '<'
+    )
+    .to(
+      '#tetris',
+      {
+        width: () => {
+          if (isMobile) {
+            return '94vw';
+          }
 
-        return `${(screenHeight * tetrisFinalHeightCoffDesktop) / 2}px`;
+          return `${(screenHeight * tetrisFinalHeightCoffDesktop) / 2}px`;
+        },
+        height: () =>
+          isMobile
+            ? `${tetrisFinalHeightCoffMobile * 100}vh`
+            : `${tetrisFinalHeightCoffDesktop * 100}vh`,
+        duration: 800,
       },
-      height: () =>
-        isMobile
-          ? `${tetrisFinalHeightCoffMobile * 100}vh`
-          : `${tetrisFinalHeightCoffDesktop * 100}vh`,
-    })
-    .to('#footer', {
-      scrollTrigger: {
-        trigger: '#bottom',
-        start: 'bottom bottom+=500',
-        end: `bottom+=800`,
-        scrub: true,
-        invalidateOnRefresh: true,
+      '<'
+    )
+    .to(
+      '#footer',
+      {
+        scale: 1,
+        duration: 800,
       },
-      scale: 1,
-    });
+      '<'
+    );
+
+  return tl;
 };
 
-// eslint-disable-next-line import/prefer-default-export
-export const mainAnimation = (
-  context: gsap.Context
-  // tl: gsap.core.Timeline
-) => {
+export const tetrisPieceAnimation = (context: gsap.Context) => {
   const { isMobile, isTablet } = context.conditions;
 
-  const tl = gsap.timeline({
-    defaults: {
-      immediateRender: false,
-    },
-  });
-
   if (isMobile) {
-    tetrisPieceAnimationMobile();
-  } else if (isTablet) {
-    tetrisPieceAnimationTablet();
-  } else {
-    tetrisPieceAnimationDesktop();
+    return tetrisPieceAnimationMobile();
   }
-  tetrisAnimation(tl, context);
+
+  if (isTablet) {
+    return tetrisPieceAnimationTablet();
+  }
+
+  return tetrisPieceAnimationDesktop();
 };

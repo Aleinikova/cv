@@ -4,7 +4,7 @@ import ScrollTrigger from 'gsap/ScrollTrigger';
 
 import TetrisControls from './TetrisControls';
 
-import { mainAnimation } from '../utils';
+import { tetrisAnimation, tetrisPieceAnimation } from '../utils';
 
 function AnimatedTetris() {
   const mm = gsap.matchMedia();
@@ -27,7 +27,13 @@ function AnimatedTetris() {
           reduceMotion: '(prefers-reduced-motion: reduce)',
         },
         (context) => {
-          mainAnimation(context);
+          const tetrisPieceAnimationTL = tetrisPieceAnimation(context);
+          const tetrisAnimationTL = tetrisAnimation(context);
+
+          return () => {
+            tetrisPieceAnimationTL.clear();
+            tetrisAnimationTL.clear();
+          };
         }
       );
     }
