@@ -17,13 +17,13 @@ const CONTACTS = [
     Icon: GitHubSvg,
   },
   {
-    link: 'https://www.linkedin.com/in/WaleriaMogilevicz',
+    link: 'https://www.linkedin.com/in/waleria-mogilewicz-149a98a1/',
     title: 'linkedin/valeria-mahilevich',
     Icon: LinkedinSvg,
   },
   {
-    link: 'https://www.upwork.com/freelancers/WaleriaMogilevicz',
-    title: 'upwork/~01dd1cfeca57b872e3',
+    link: 'https://www.upwork.com/freelancers/valeriaaleinikova',
+    title: 'www.upwork.com/valeria',
     Icon: UpworkSvg,
   },
 ];

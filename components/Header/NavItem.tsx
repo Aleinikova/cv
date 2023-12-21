@@ -10,11 +10,15 @@ function NavItem({ children, className, onClick }: INavItem) {
   return (
     <li
       className={clsx(
-        'font-regular mr-2 cursor-pointer border-2 border-transparent px-3 py-2 font-secondary font-medium leading-4 transition-all last:mr-0 hover:border-primary',
+        'font-regular group mr-2 cursor-pointer  font-secondary font-medium leading-4  last:mr-0 ',
         className
       )}
     >
-      <button onClick={onClick} type='button'>
+      <button
+        onClick={onClick}
+        type='button'
+        className='border-2 border-transparent px-3 py-2 transition-all group-hover:border-primary'
+      >
         {children}
       </button>
     </li>

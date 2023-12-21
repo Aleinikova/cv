@@ -28,11 +28,13 @@ const AboutMe = React.forwardRef<HTMLElement>((_, ref) => (
           Waleria Mogilewicz
         </h3>
         <p className='mb-6 text-sm font-light leading-6'>
-          Frontend developer, 27 years old
+          {`Frontend developer, ${new Date().getFullYear() - 1996} years old`}
         </p>
 
         <p className='max-w-lg text-base leading-6'>
-          I’m an Frontend developer with 6 years of expertise.
+          {`I’m an Frontend developer with ${
+            new Date().getFullYear() - 2017
+          } years of expertise.`}
           <br />
           <br />
           Have a strong background in both independent project work and
