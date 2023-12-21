@@ -502,14 +502,16 @@ export const tetrisAnimation = (context: gsap.Context) => {
   const tetrisControls = +gsap.getProperty('#footer', 'height');
 
   const tetrisFinalHeightCoffDesktop = 0.94;
-  const tetrisFinalHeightCoffMobile = 0.96;
+  const tetrisFinalHeightCoffMobile = 0.84;
 
-  const tetrisScreenPaddings = 60;
+  const tetrisScreenPaddings = isMobile ? 20 : 60;
 
   const scale =
-    (contentScreenHeight * tetrisFinalHeightCoffDesktop -
+    (contentScreenHeight *
+      (isMobile ? tetrisFinalHeightCoffMobile : tetrisFinalHeightCoffDesktop) -
       tetrisControls -
-      tetrisScreenPaddings) /
+      tetrisScreenPaddings -
+      (isMobile ? 40 : 0)) /
     contentScreenHeight;
 
   const tl = gsap.timeline({
@@ -559,13 +561,13 @@ export const tetrisAnimation = (context: gsap.Context) => {
     scale: () => scale,
     y: () => {
       const tetrisScreenPlaceholder =
-        contentScreenHeight *
+        screenHeight *
           (isMobile
             ? tetrisFinalHeightCoffMobile
             : tetrisFinalHeightCoffDesktop) -
         tetrisControls;
 
-      const mainContentScaled = contentScreenHeight * scale;
+      const mainContentScaled = screenHeight * scale;
 
       const tetrisScreenPlaceholderVerticalMargin =
         (tetrisScreenPlaceholder - mainContentScaled) / 2;
@@ -578,11 +580,12 @@ export const tetrisAnimation = (context: gsap.Context) => {
               : tetrisFinalHeightCoffDesktop)) /
         2;
 
-      return -(
-        screenHeight / 2 -
-        mainContentScaled / 2 -
-        tetrisScreenPlaceholderVerticalMargin -
-        tetrisVerticalMargin
+      return (
+        -(contentScreenHeight - screenHeight) / 2 -
+        (screenHeight / 2 -
+          mainContentScaled / 2 -
+          tetrisScreenPlaceholderVerticalMargin -
+          tetrisVerticalMargin)
       );
     },
     duration: 800,
@@ -601,7 +604,7 @@ export const tetrisAnimation = (context: gsap.Context) => {
       {
         width: () => {
           if (isMobile) {
-            return '94vw';
+            return `${(screenHeight * tetrisFinalHeightCoffMobile) / 2}px`;
           }
 
           return `${(screenHeight * tetrisFinalHeightCoffDesktop) / 2}px`;
@@ -620,6 +623,14 @@ export const tetrisAnimation = (context: gsap.Context) => {
         scale: 1,
         duration: 800,
       },
+      '<'
+    )
+    .fromTo(
+      'body',
+      {
+        background: 'white',
+      },
+      { background: '#16161d', duration: 1 },
       '<'
     );
 
