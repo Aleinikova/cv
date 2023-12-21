@@ -20,6 +20,7 @@ const AboutMe = React.forwardRef<HTMLElement>((_, ref) => (
           width={320}
           height={445}
           quality={100}
+          priority
         />
         {/* <div className='absolute -bottom-6 -right-6 -z-10 h-full w-full border-2 border-solid border-primary content-[""]' /> */}
       </div>
