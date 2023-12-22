@@ -42,6 +42,9 @@ const config: Config = {
       borderWidth: {
         6: '6px',
       },
+      boxShadow: {
+        'inner-md': 'inset -20px -26px 0px 0px rgba(26, 26, 26, 1)',
+      },
     },
   },
   plugins: [],

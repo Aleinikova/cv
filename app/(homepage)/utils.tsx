@@ -630,7 +630,10 @@ export const tetrisAnimation = (context: gsap.Context) => {
       {
         background: 'white',
       },
-      { background: '#16161d', duration: 1 },
+      {
+        background: 'linear-gradient(to bottom,#16161d, #1f1f3a, #3b2f4a)',
+        duration: 1,
+      },
       '<'
     );
 

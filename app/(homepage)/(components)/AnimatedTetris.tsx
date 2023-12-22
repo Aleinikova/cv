@@ -59,7 +59,7 @@ function AnimatedTetris() {
   return (
     <div
       id='tetris'
-      className='absolute inset-x-1/2 inset-y-1/2 h-[220vh] w-[100vw] -translate-x-1/2 -translate-y-1/2 overflow-hidden rounded-3xl bg-text-primary xl:h-[350vh]'
+      className='after:bg-red absolute inset-x-1/2 inset-y-1/2 h-[220vh] w-[100vw] -translate-x-1/2 -translate-y-1/2 rounded-3xl bg-text-primary shadow-inner-md after:absolute after:-z-10 after:h-full after:w-full after:rounded-3xl after:border-6 after:border-black after:shadow-[inset_9px_9px_0px_4px_rgba(38,38,38,1)] xl:h-[350vh] '
     >
       <TetrisControls />
     </div>
