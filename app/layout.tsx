@@ -12,7 +12,7 @@ const orbitron = Orbitron({
 
 const merriweather = Merriweather({
   subsets: ['latin'],
-  weight: ['300', '400'],
+  weight: ['300', '400', '700'],
   variable: '--font-merriweather',
   display: 'swap',
 });

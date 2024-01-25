@@ -13,10 +13,11 @@ import { initFallingPiecesAnimation } from './animation';
 const HEIGHT_FOR_ANIMATION_CALCULATION = 980;
 
 interface AnimatedBackgroundProps {
+  className?: string;
   isPaused?: boolean;
 }
 
-function AnimatedBackground({ isPaused }: AnimatedBackgroundProps) {
+function AnimatedBackground({ isPaused, className }: AnimatedBackgroundProps) {
   const animationContainerRef = useRef<HTMLDivElement>(null);
 
   const ctx = useMemo(() => gsap.context(() => {}, animationContainerRef), []);
@@ -72,7 +73,7 @@ function AnimatedBackground({ isPaused }: AnimatedBackgroundProps) {
   }
 
   return (
-    <div>
+    <div className={className}>
       <div className='absolute left-0 top-0 z-10 h-[15%] w-full  bg-gradient-to-b from-white to-transparent' />
       <div ref={animationContainerRef}>
         <Tetris
