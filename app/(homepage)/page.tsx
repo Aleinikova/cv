@@ -15,13 +15,13 @@ import Scroller from '@components/Scroller';
 import Header from '@components/Header';
 import TetrisPiece from '@components/TetrisPiece';
 
-import AboutMe from './(components)/AboutMe';
-import TetrisBottomPieces from './(components)/TetrisBottomPieces';
-import Contacts from './(components)/Contacts';
-import Projects from './(components)/Projects';
-import Technologies from './(components)/Technologies';
-import WelcomeBlock from './(components)/WelcomeBlock';
-import Tetris from './(components)/AnimatedTetris';
+import AboutMe from './components/AboutMe';
+import TetrisBottomPieces from './components/TetrisBottomPieces';
+import Contacts from './components/Contacts';
+import Projects from './components/Projects';
+import Technologies from './components/Technologies';
+import WelcomeBlock from './components/WelcomeBlock';
+import Tetris from './components/AnimatedTetris';
 
 export default function Home() {
   const containerRef = useRef<HTMLDivElement>(null);
