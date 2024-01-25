@@ -10,7 +10,7 @@ function NavItem({ children, className, onClick }: INavItem) {
   return (
     <li
       className={clsx(
-        'font-regular group mr-2 cursor-pointer  font-secondary font-medium leading-4  last:mr-0 ',
+        'font-regular group mr-2 cursor-pointer font-secondary font-medium leading-4 last:mr-0 ',
         className
       )}
     >
