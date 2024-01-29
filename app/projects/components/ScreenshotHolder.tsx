@@ -1,5 +1,9 @@
+'use client';
+
 import clsx from 'clsx';
 import Image from 'next/image';
+import { useState } from 'react';
+import Skeleton from 'react-loading-skeleton';
 
 interface ScreenshotHolderProps {
   src: string;
@@ -18,11 +22,12 @@ function ScreenshotHolder({
   height,
   noBorder,
 }: ScreenshotHolderProps) {
+  const [isLoading, setIsLoading] = useState(true);
   return (
     <li
       className={clsx(
-        'relative mb-8 overflow-hidden rounded-xl last:mb-0',
-        { 'h-[50vw]': !height },
+        'relative mb-6 overflow-hidden rounded-xl last:mb-0 lg:mb-8',
+        { 'h-[50vw] max-h-[600px]': !height },
         { 'w-full': !width },
         { [height]: height },
         { [width]: width },
@@ -37,7 +42,14 @@ function ScreenshotHolder({
         style={{
           objectFit: 'contain',
         }}
+        onLoad={() => setIsLoading(false)}
       />
+
+      {isLoading && (
+        <div className='h-full w-full leading-[1px]'>
+          <Skeleton containerClassName='w-full h-full' height='100%' />
+        </div>
+      )}
     </li>
   );
 }

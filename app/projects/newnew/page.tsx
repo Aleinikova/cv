@@ -40,7 +40,7 @@ function NewNewPage() {
       </section>
 
       <section className='mb-32'>
-        <Headline component='h2'>About</Headline>
+        <Headline component='h2'>About page</Headline>
         <ul>
           <ScreenshotHolder src='/newnew-9.png' alt='Newnew about' />
           <ScreenshotHolder src='/newnew-10.png' alt='Newnew about' />

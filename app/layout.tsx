@@ -1,7 +1,9 @@
 import type { Metadata } from 'next';
 import { Merriweather, Orbitron } from 'next/font/google';
+import { SkeletonTheme } from 'react-loading-skeleton';
 
 import './globals.css';
+import 'react-loading-skeleton/dist/skeleton.css';
 
 const orbitron = Orbitron({
   subsets: ['latin'],
@@ -32,7 +34,11 @@ export default function RootLayout({
       lang='en'
       className={`${merriweather.variable} ${orbitron.variable} w-full overflow-hidden`}
     >
-      <body className='flexflex-col font-primary'>{children}</body>
+      <body className='flexflex-col font-primary'>
+        <SkeletonTheme baseColor='#fdfeff' highlightColor='#f1f2f3'>
+          {children}
+        </SkeletonTheme>
+      </body>
     </html>
   );
 }
