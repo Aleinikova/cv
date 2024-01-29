@@ -38,7 +38,6 @@ function ScreenshotHolder({
           objectFit: 'contain',
         }}
       />
-
     </li>
   );
 }
