@@ -30,7 +30,15 @@ function ScreenshotHolder({
         className
       )}
     >
-      <Image src={src} alt={alt} fill objectFit='contain' />
+      <Image
+        src={src}
+        alt={alt}
+        fill
+        style={{
+          objectFit: 'contain',
+        }}
+      />
+
     </li>
   );
 }

@@ -44,7 +44,9 @@ function ProjectDescription({
             alt={title}
             fill
             priority
-            objectFit='contain'
+            style={{
+              objectFit: 'contain',
+            }}
           />
         </div>
 

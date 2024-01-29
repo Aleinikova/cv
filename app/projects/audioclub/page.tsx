@@ -11,6 +11,7 @@ function Audioclub() {
       teamSize='2'
       imgUrl='/audioclub-banner.png'
       projectLink='https://aleinikova.github.io/audio/'
+      imageHeight='h-3/5'
     />
   );
 }
