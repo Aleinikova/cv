@@ -51,11 +51,12 @@ const PROJECT_LIST = [
       'project-animated bg-secondary bg-opacity-40 order-0 xl:opacity-0 xl:order-none xl:bg-transparent',
   },
   {
-    title: 'Olimpic skydive',
+    title: 'Locust',
     startDate: '2020-04-01',
     endDate: '2021-07-01',
     stack: ['React', 'Redux toolkit', 'React-hook-forms', 'MUI'],
     className: 'project-animated-mobile xl:bg-secondary xl:bg-opacity-50',
+    link: `${PROJECT_URL}/locust`,
   },
   {
     title: 'PettyGigs',

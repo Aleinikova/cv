@@ -17,6 +17,7 @@ function NewNewPage() {
         myRole='Senior frontend developer'
         teamSize='6-8'
         imgUrl='/newnew-banner.png'
+        imageHeight='h-2/5 lg:h-2/3'
       />
 
       <section className='mb-32'>
@@ -39,12 +40,19 @@ function NewNewPage() {
       </section>
 
       <section className='mb-32'>
+        <Headline component='h2'>About</Headline>
+        <ul>
+          <ScreenshotHolder src='/newnew-9.png' alt='Newnew about' />
+          <ScreenshotHolder src='/newnew-10.png' alt='Newnew about' />
+        </ul>
+      </section>
+
+      <section>
         <Headline component='h2'>Posts</Headline>
         <ul>
           <ScreenshotHolder
             src='/newnew-7.png'
             alt='Newnew homepage'
-            width='w-full'
             height='h-[100vw]'
           />
         </ul>

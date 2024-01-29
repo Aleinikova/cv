@@ -10,7 +10,7 @@ function ProjectLayout({ children }: ProjectLayoutProps) {
     <Scroller>
       <div className='flex h-full flex-col items-center'>
         <Header />
-        <main className=' max-w-7xl px-4 md:px-6 lg:px-20 xl:px-20 2xl:px-0'>
+        <main className='w-full max-w-7xl p-4 lg:px-20 xl:px-20  2xl:px-0 '>
           {children}
         </main>
       </div>

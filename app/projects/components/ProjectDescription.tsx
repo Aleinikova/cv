@@ -1,4 +1,5 @@
 import AnimatedBackground from '@components/AnimatedBackground';
+import clsx from 'clsx';
 import Image from 'next/image';
 
 interface ProjectDescription {
@@ -10,6 +11,7 @@ interface ProjectDescription {
   teamSize: string;
   imgUrl: string;
   projectLink?: string;
+  imageHeight?: string;
 }
 function ProjectDescription({
   title,
@@ -20,16 +22,38 @@ function ProjectDescription({
   teamSize,
   imgUrl,
   projectLink,
+  imageHeight,
 }: ProjectDescription) {
   return (
-    <section className='mb-12'>
+    <section className='mb-4 w-full lg:mb-12'>
       <AnimatedBackground className='blur-sm' />
 
-      <div className='flex h-screen items-center'>
-        <div className='h-1/3 w-1/2 shrink-0'>
-          <h1 className='mb-1 font-secondary text-4xl font-bold'>{title}</h1>
+      <div className='flex h-[calc(90vh_-_76px)] flex-col items-center lg:flex-row'>
+        <div
+          className={clsx(
+            'relative mb-6  w-full lg:order-1 lg:mb-0 lg:ml-auto ',
+            {
+              'h-2/5 lg:h-1/3': !imageHeight,
+              [imageHeight]: imageHeight,
+            }
+          )}
+        >
+          <Image
+            className='ml-auto'
+            src={imgUrl}
+            alt={title}
+            fill
+            priority
+            objectFit='contain'
+          />
+        </div>
+
+        <div className='min-h-1/3 w-full shrink-0 text-sm lg:w-5/12'>
+          <h1 className='mb-1 font-secondary text-xl font-bold lg:text-4xl'>
+            {title}
+          </h1>
           <h2 className='mb-6 text-gray-500'>{subtitle}</h2>
-          <p className='mb-6 text-lg'>{description}</p>
+          <p className='mb-6 lg:text-lg'>{description}</p>
           <ul>
             <li className='mb-1'>
               <span className='font-bold'>Technologies: </span>
@@ -58,16 +82,6 @@ function ProjectDescription({
             )}
           </ul>
         </div>
-
-        <Image
-          className='ml-auto'
-          src={imgUrl}
-          alt={title}
-          width={500}
-          height={700}
-          quality={100}
-          priority
-        />
       </div>
     </section>
   );

@@ -32,7 +32,7 @@ export default function RootLayout({
       lang='en'
       className={`${merriweather.variable} ${orbitron.variable} w-full overflow-hidden`}
     >
-      <body className='flex flex-col font-primary'>{children}</body>
+      <body className='flexflex-col font-primary'>{children}</body>
     </html>
   );
 }

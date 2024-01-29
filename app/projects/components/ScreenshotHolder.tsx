@@ -22,7 +22,7 @@ function ScreenshotHolder({
     <li
       className={clsx(
         'relative mb-8 overflow-hidden rounded-xl last:mb-0',
-        { 'h-[600px]': !height },
+        { 'h-[50vw]': !height },
         { 'w-full': !width },
         { [height]: height },
         { [width]: width },
