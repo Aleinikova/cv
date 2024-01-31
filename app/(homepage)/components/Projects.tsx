@@ -9,7 +9,7 @@ interface IProject {
   className?: string;
   title: string;
   startDate: string;
-  endDate: string;
+  endDate?: string;
   stack: string[];
   link?: string;
 }
@@ -27,8 +27,8 @@ const PROJECT_LIST = [
   },
   {
     title: 'Enviago',
-    startDate: '2022-04-01',
-    endDate: '2022-04-01',
+    startDate: '2022-01-01',
+    endDate: '2022-05-01',
     stack: ['React.js', 'Typescript', 'Tailwind'],
     className: 'bg-secondary order-0 bg-opacity-60',
     link: `${PROJECT_URL}/enviago`,
@@ -36,7 +36,6 @@ const PROJECT_LIST = [
   {
     title: 'AudioClub',
     startDate: '2022-01-01',
-    endDate: '2022-02-01',
     stack: ['Nunjucks', 'GSAP animation'],
     className:
       'project-animated bg-secondary bg-opacity-50 order-0 xl:opacity-0 xl:order-none xl:bg-transparent',
@@ -45,7 +44,7 @@ const PROJECT_LIST = [
   {
     title: 'Sinomotors',
     startDate: '2021-07-01',
-    endDate: '2022-02-01',
+    endDate: '2021-12-01',
     stack: ['Next.js', 'React-hook-form', 'SWR', 'Tailwind css'],
     className:
       'project-animated bg-secondary bg-opacity-40 order-0 xl:opacity-0 xl:order-none xl:bg-transparent',
@@ -92,15 +91,18 @@ function Project({
       })}
     >
       <h4 className='font-xl mb-1 font-secondary font-bold'>{title}</h4>
-      <p className='mb-5 text-sm text-neutral-900'>{`${new Date(
-        startDate
-      ).toLocaleString('en-US', {
-        year: 'numeric',
-        month: 'long',
-      })} - ${new Date(endDate).toLocaleString('en-US', {
-        year: 'numeric',
-        month: 'long',
-      })}`}</p>
+      <p className='mb-5 text-sm text-neutral-900'>
+        {new Date(startDate).toLocaleString('en-US', {
+          year: 'numeric',
+          month: 'long',
+        })}
+
+        {endDate &&
+          `- ${new Date(endDate).toLocaleString('en-US', {
+            year: 'numeric',
+            month: 'long',
+          })}`}
+      </p>
       <ul>
         {stack.map((stackEl) => (
           <li key={stackEl}>{`- ${stackEl}`}</li>

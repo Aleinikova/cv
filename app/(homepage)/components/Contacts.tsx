@@ -22,7 +22,7 @@ const CONTACTS = [
     Icon: LinkedinSvg,
   },
   {
-    link: 'https://www.upwork.com/freelancers/valeriaaleinikova',
+    link: 'https://www.upwork.com/freelancers/~01dd1cfeca57b872e3',
     title: 'www.upwork.com/valeria',
     Icon: UpworkSvg,
   },

@@ -14,6 +14,7 @@ function EnviagoPage() {
         teamSize='3'
         imgUrl='/enviago-banner.png'
         projectLink='https://enviago.com/'
+        imageHeight='h-4/5'
       />
 
       <section className='mb-32'>
