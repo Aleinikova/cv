@@ -1,22 +1,55 @@
 import type { Metadata } from 'next';
-import { Merriweather, Orbitron } from 'next/font/google';
+import localFont from 'next/font/local';
 import { SkeletonTheme } from 'react-loading-skeleton';
 
 import './globals.css';
 import 'react-loading-skeleton/dist/skeleton.css';
 
-const orbitron = Orbitron({
-  subsets: ['latin'],
-  weight: ['400', '500', '600', '700'],
+const orbitron = localFont({
+  src: [
+    {
+      path: '../public/fonts/Orbitron-Regular-subset.woff2',
+      weight: '400',
+      style: 'normal',
+    },
+    {
+      path: '../public/fonts/Orbitron-Medium-subset.woff2',
+      weight: '500',
+      style: 'normal',
+    },
+    {
+      path: '../public/fonts/Orbitron-SemiBold-subset.woff2',
+      weight: '600',
+      style: 'normal',
+    },
+    {
+      path: '../public/fonts/Orbitron-Bold-subset.woff2',
+      weight: '700',
+      style: 'normal',
+    },
+  ],
   variable: '--font-orbitron',
-  display: 'swap',
 });
 
-const merriweather = Merriweather({
-  subsets: ['latin'],
-  weight: ['300', '400', '700'],
+const merriweather = localFont({
+  src: [
+    {
+      path: '../public/fonts/Merriweather-light-subset.woff2',
+      weight: '300',
+      style: 'normal',
+    },
+    {
+      path: '../public/fonts/Merriweather-regular-subset.woff2',
+      weight: '400',
+      style: 'normal',
+    },
+    {
+      path: '../public/fonts/Merriweather-bold-subset.woff2',
+      weight: '700',
+      style: 'normal',
+    },
+  ],
   variable: '--font-merriweather',
-  display: 'swap',
 });
 
 export const metadata: Metadata = {

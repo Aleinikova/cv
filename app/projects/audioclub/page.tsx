@@ -9,7 +9,7 @@ function Audioclub() {
       technologies='GSAP animation, Nunjucks, Vanilla JS'
       myRole='Frontend developer'
       teamSize='2'
-      imgUrl='/audioclub-banner.png'
+      imgUrl='/images/audioclub-banner.png'
       projectLink='https://aleinikova.github.io/audio/'
       imageHeight='h-3/5'
     />

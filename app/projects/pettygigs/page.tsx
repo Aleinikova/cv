@@ -12,56 +12,56 @@ function PettyGigsPage() {
         technologies='React Native, Redux, Reselect, Stripe'
         myRole='Frontend developer'
         teamSize='2'
-        imgUrl='/pettygigs-banner.png'
+        imgUrl='/images/pettygigs-banner.png'
       />
 
       <section>
         <Headline component='h2'>Screens</Headline>
         <ul className='flex flex-col md:flex-row md:flex-wrap'>
           <ScreenshotHolder
-            src='/pettygigs-1.png'
+            src='/images/pettygigs-1.png'
             alt='sigin'
             noBorder
             width='md:w-1/2'
             height='h-[100vw] md:h-[50vw]'
           />
           <ScreenshotHolder
-            src='/pettygigs-2.png'
+            src='/images/pettygigs-2.png'
             alt='post gig'
             width='md:w-1/2'
             height='h-[100vw] md:h-[50vw]'
             noBorder
           />
           <ScreenshotHolder
-            src='/pettygigs-3.png'
+            src='/images/pettygigs-3.png'
             alt='post gigs select time'
             width='md:w-1/2'
             height='h-[100vw] md:h-[50vw]'
             noBorder
           />
           <ScreenshotHolder
-            src='/pettygigs-4.png'
+            src='/images/pettygigs-4.png'
             alt='chat'
             width='md:w-1/2'
             height='h-[100vw] md:h-[50vw]'
             noBorder
           />
           <ScreenshotHolder
-            src='/pettygigs-5.png'
+            src='/images/pettygigs-5.png'
             alt='gigs'
             width='md:w-1/2'
             height='h-[100vw] md:h-[50vw]'
             noBorder
           />
           <ScreenshotHolder
-            src='/pettygigs-6.png'
+            src='/images/pettygigs-6.png'
             alt='gig status'
             width='md:w-1/2'
             height='h-[100vw] md:h-[50vw]'
             noBorder
           />
           <ScreenshotHolder
-            src='/pettygigs-7.png'
+            src='/images/pettygigs-7.png'
             alt='gig status'
             width='md:w-1/2'
             height='h-[100vw] md:h-[50vw]'

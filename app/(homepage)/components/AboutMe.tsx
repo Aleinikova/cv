@@ -15,7 +15,7 @@ const AboutMe = React.forwardRef<HTMLElement>((_, ref) => (
       <div className='max-w-4/5 relative mb-10 flex flex-shrink-0 lg:w-auto'>
         {/* <div className='absolute -left-6 -top-6 -z-10 h-full w-full border-2 border-solid border-secondary content-[""]' /> */}
         <Image
-          src='/author.png'
+          src='/images/author.png'
           alt='Picture of the author'
           width={320}
           height={445}

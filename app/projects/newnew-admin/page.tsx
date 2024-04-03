@@ -13,21 +13,30 @@ function NewNewAdminPage() {
         technologies=' React, TypeScript, Auth0, MUI, Stripe API, SWR, React-hook-form, YUP'
         myRole='Senior frontend developer'
         teamSize='2'
-        imgUrl='/newnew-admin-1.png'
+        imgUrl='/images/newnew-admin-1.png'
         imageHeight='h-2/5 lg:h-2/3'
       />
 
       <section className='mb-32'>
         <Headline component='h2'>Screens</Headline>
         <ul>
-          <ScreenshotHolder src='/newnew-admin-1.png' alt='Homepage' />
-          <ScreenshotHolder src='/newnew-admin-2.png' alt='Todays activities' />
-          <ScreenshotHolder src='/newnew-admin-3.png' alt='Users page' />
-          <ScreenshotHolder src='/newnew-admin-4.png' alt='Users filters' />
-          <ScreenshotHolder src='/newnew-admin-5.png' alt='Posts page' />
-          <ScreenshotHolder src='/newnew-admin-6.png' alt='Posts filters' />
-          <ScreenshotHolder src='/newnew-admin-7.png' alt='Reports' />
-          <ScreenshotHolder src='/newnew-admin-8.png' alt='Payouts' />
+          <ScreenshotHolder src='/images/newnew-admin-1.png' alt='Homepage' />
+          <ScreenshotHolder
+            src='/images/newnew-admin-2.png'
+            alt='Todays activities'
+          />
+          <ScreenshotHolder src='/images/newnew-admin-3.png' alt='Users page' />
+          <ScreenshotHolder
+            src='/images/newnew-admin-4.png'
+            alt='Users filters'
+          />
+          <ScreenshotHolder src='/images/newnew-admin-5.png' alt='Posts page' />
+          <ScreenshotHolder
+            src='/images/newnew-admin-6.png'
+            alt='Posts filters'
+          />
+          <ScreenshotHolder src='/images/newnew-admin-7.png' alt='Reports' />
+          <ScreenshotHolder src='/images/newnew-admin-8.png' alt='Payouts' />
         </ul>
       </section>
     </>

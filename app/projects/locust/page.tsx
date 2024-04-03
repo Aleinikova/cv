@@ -12,18 +12,18 @@ function NewNewPage() {
         technologies='React, Redux toolkit, React hook forms, Material UI, React-PDF, i18next. Work with camera in browser for reading QR and bar codes'
         myRole='Frontend developer'
         teamSize='3'
-        imgUrl='/olimpic-banner.png'
+        imgUrl='/images/olimpic-banner.png'
         projectLink='https://cp.locust-system.com/'
       />
 
       <section>
         <Headline component='h2'>Screenshots</Headline>
         <ul>
-          <ScreenshotHolder src='/olimpic-1.png' alt='Newnew homepage' />
-          <ScreenshotHolder src='/olimpic-2.png' alt='Newnew homepage' />
-          <ScreenshotHolder src='/olimpic-5.png' alt='Newnew homepage' />
-          <ScreenshotHolder src='/olimpic-3.png' alt='Newnew homepage' />
-          <ScreenshotHolder src='/olimpic-4.png' alt='Newnew homepage' />
+          <ScreenshotHolder src='/images/olimpic-1.png' alt='Newnew homepage' />
+          <ScreenshotHolder src='/images/olimpic-2.png' alt='Newnew homepage' />
+          <ScreenshotHolder src='/images/olimpic-5.png' alt='Newnew homepage' />
+          <ScreenshotHolder src='/images/olimpic-3.png' alt='Newnew homepage' />
+          <ScreenshotHolder src='/images/olimpic-4.png' alt='Newnew homepage' />
         </ul>
       </section>
     </>
