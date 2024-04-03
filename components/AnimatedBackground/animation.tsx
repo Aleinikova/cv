@@ -7,7 +7,7 @@ export const initFallingPiecesAnimation = (
     '.tetris-1',
     {
       opacity: 1,
-      transform: 'translateY(-20vh)',
+      transform: 'translateY(-10px)',
       rotate: 180,
     },
     {
@@ -23,7 +23,7 @@ export const initFallingPiecesAnimation = (
     '.tetris-2',
     {
       opacity: 1,
-      transform: 'translateY(-20vh)',
+      transform: 'translateY(-10px)',
       rotate: -90,
     },
     {
@@ -40,7 +40,7 @@ export const initFallingPiecesAnimation = (
     '.tetris-3',
     {
       opacity: 1,
-      transform: 'translateY(-20vh)',
+      transform: 'translateY(-10px)',
     },
     {
       opacity: 0,
@@ -55,7 +55,7 @@ export const initFallingPiecesAnimation = (
     '.tetris-4',
     {
       opacity: 1,
-      transform: 'translateY(-20vh)',
+      transform: 'translateY(-10px)',
     },
     {
       opacity: 0,
@@ -70,7 +70,7 @@ export const initFallingPiecesAnimation = (
     '.tetris-5',
     {
       opacity: 1,
-      transform: 'translateY(-20vh)',
+      transform: 'translateY(-10px)',
     },
     {
       opacity: 0,
@@ -85,7 +85,7 @@ export const initFallingPiecesAnimation = (
     '.tetris-6',
     {
       opacity: 1,
-      transform: 'translateY(-20vh)',
+      transform: 'translateY(-10px)',
       rotate: 90,
     },
     {
@@ -102,7 +102,7 @@ export const initFallingPiecesAnimation = (
     '.tetris-7',
     {
       opacity: 1,
-      transform: 'translateY(-20vh)',
+      transform: 'translateY(-10px)',
     },
     {
       opacity: 0,
@@ -117,7 +117,7 @@ export const initFallingPiecesAnimation = (
     '.tetris-8',
     {
       opacity: 1,
-      transform: 'translateY(-20vh)',
+      transform: 'translateY(-10px)',
     },
     {
       opacity: 0,
@@ -132,7 +132,7 @@ export const initFallingPiecesAnimation = (
     '.tetris-9',
     {
       opacity: 1,
-      transform: 'translateY(-20vh)',
+      transform: 'translateY(-10px)',
       rotate: 90,
     },
     {
