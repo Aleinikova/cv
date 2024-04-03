@@ -1,3 +1,5 @@
+import Link from 'next/link';
+
 import Headline from '@components/Headline';
 import ScreenshotHolder from '../components/ScreenshotHolder';
 import ProjectDescription from '../components/ProjectDescription';
@@ -12,13 +14,23 @@ function NewNewPage() {
     creators can post with a video where propose audience to decide
     what they should do. The audience makes paid votes for some
     options and decides what the creator should do.'
-        technologies=' Next.js,Typescript, React-query, Context API, Video.js,
+        technologies=' Next.js, Typescript, React-query, Context API, Video.js,
     Mixpanel, Stripe API, i18next, Styled-components'
         myRole='Senior frontend developer'
         teamSize='6-8'
         imgUrl='/newnew-banner.png'
         imageHeight='h-2/5 lg:h-2/3'
       />
+
+      <div className='mb-48'>
+        Additionally I've implemented admin panel for the application:{' '}
+        <Link
+          className='text-brand-blue underline'
+          href='/projects/newnew-admin'
+        >
+          Newnew admin panel
+        </Link>
+      </div>
 
       <section className='mb-32'>
         <Headline component='h2'>Homepage</Headline>

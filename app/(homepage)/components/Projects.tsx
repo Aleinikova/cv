@@ -45,7 +45,7 @@ const PROJECT_LIST = [
     title: 'Sinomotors',
     startDate: '2021-07-01',
     endDate: '2021-12-01',
-    stack: ['Next.js', 'React-hook-form', 'SWR', 'Tailwind css'],
+    stack: ['Next.js', 'React-hook-form', 'SWR'],
     className:
       'project-animated bg-secondary bg-opacity-40 order-0 xl:opacity-0 xl:order-none xl:bg-transparent',
   },

@@ -56,21 +56,21 @@ function ProjectDescription({
           </h1>
           <h2 className='mb-6 text-gray-500'>{subtitle}</h2>
           <p className='mb-6 lg:text-lg'>{description}</p>
-          <ul>
-            <li className='mb-1'>
+          <ul className='text-base'>
+            <li className='mb-1.5'>
               <span className='font-bold'>Technologies: </span>
               {technologies}
             </li>
-            <li className='mb-1'>
+            <li className='mb-1.5'>
               <span className='font-bold'>My role: </span>
               {myRole}
             </li>
-            <li className='mb-1'>
+            <li className='mb-1.5'>
               <span className='font-bold'>Team size: </span>
               {teamSize}
             </li>
             {projectLink && (
-              <li className='mb-1'>
+              <li>
                 <span className='font-bold'>Project link: </span>
                 <a
                   href={projectLink}
