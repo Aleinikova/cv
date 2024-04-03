@@ -34,17 +34,17 @@ const orbitron = localFont({
 const merriweather = localFont({
   src: [
     {
-      path: '../public/fonts/Merriweather-light-subset.woff2',
+      path: '../public/fonts/Merriweather-Light-subset.woff2',
       weight: '300',
       style: 'normal',
     },
     {
-      path: '../public/fonts/Merriweather-regular-subset.woff2',
+      path: '../public/fonts/Merriweather-Regular-subset.woff2',
       weight: '400',
       style: 'normal',
     },
     {
-      path: '../public/fonts/Merriweather-bold-subset.woff2',
+      path: '../public/fonts/Merriweather-Bold-subset.woff2',
       weight: '700',
       style: 'normal',
     },
