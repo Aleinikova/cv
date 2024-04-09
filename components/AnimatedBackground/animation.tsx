@@ -1,3 +1,5 @@
+import gsap from 'gsap';
+
 // eslint-disable-next-line import/prefer-default-export
 export const initFallingPiecesAnimation = (
   tl: ReturnType<typeof gsap.timeline>,

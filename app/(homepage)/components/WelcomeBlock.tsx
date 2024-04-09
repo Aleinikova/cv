@@ -1,12 +1,12 @@
 import { useRef } from 'react';
 
-// import AnimatedBackground from '@components/AnimatedBackground';
+import AnimatedBackground from '@components/AnimatedBackground';
 
-// import useIntersectionObserver from 'hooks/useIntersectionObserver';
+import useIntersectionObserver from 'hooks/useIntersectionObserver';
 
 function WelcomeBlock() {
   const ref = useRef();
-  // const isInView = useIntersectionObserver(ref, {});
+  const isInView = useIntersectionObserver(ref, {});
 
   return (
     <section
@@ -20,7 +20,7 @@ function WelcomeBlock() {
           I’m a <span className='text-primary'>Frontend</span> developer
         </h1>
       </div>
-      {/* <AnimatedBackground isPaused={!isInView} /> */}
+      <AnimatedBackground isPaused={!isInView} />
     </section>
   );
 }
