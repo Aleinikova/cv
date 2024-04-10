@@ -17,14 +17,16 @@ export default function Home() {
 
   return (
     <>
+      {/* desktop */}
       <TetrisPiece
-        className='!absolute -top-[50vh] right-[60px] hidden rotate-90 opacity-0 xl:flex'
+        className='!absolute -top-[50vh] right-[60px] hidden rotate-90 opacity-0 lg:flex'
         size='md'
         variant='Z'
         color='red'
         id='mainTetrisPiece'
       />
 
+      {/* mobile */}
       <TetrisPiece
         className='!absolute right-[20px] top-0 sm:hidden'
         size='md'
@@ -33,6 +35,7 @@ export default function Home() {
         id='mainTetrisPieceMobile'
       />
 
+      {/* tablet */}
       <TetrisPiece
         className='!absolute right-[120px] top-0 hidden rotate-180 sm:flex xl:hidden'
         size='md'

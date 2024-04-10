@@ -66,6 +66,15 @@ const PROJECT_LIST = [
     link: `${PROJECT_URL}/pettygigs`,
   },
   {
+    title: 'IstMED',
+    startDate: '2019-09-01',
+    endDate: '2019-10-01',
+    stack: ['HTML', 'CSS', 'Vanilla JS'],
+    className:
+      'project-animated project-animated-mobile xl:opacity-0 hidden xl:flex',
+    link: `${PROJECT_URL}/istmed`,
+  },
+  {
     title: 'Loreal',
     startDate: '2017-01-01',
     endDate: '2019-09-01',
