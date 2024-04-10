@@ -4,7 +4,7 @@ function Istmed() {
   return (
     <ProjectDescription
       title='IstMED'
-      subtitle='Landing for stomatology'
+      subtitle='Landing for dental clinic'
       description=''
       technologies='HTML, CSS, Vanilla JS'
       myRole='Frontend developer'
