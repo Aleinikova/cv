@@ -7,21 +7,35 @@ import {
   useCallback,
   MutableRefObject,
 } from 'react';
-import ScrollTrigger from 'gsap/ScrollTrigger';
 import type { Scrollbar } from 'smooth-scrollbar/scrollbar';
-import gsap from 'gsap';
+import dynamic from 'next/dynamic';
 
 import Scroller from '@components/Scroller';
 import Header from '@components/Header';
-import TetrisPiece from '@components/TetrisPiece';
 
 import AboutMe from './components/AboutMe';
-import TetrisBottomPieces from './components/TetrisBottomPieces';
 import Contacts from './components/Contacts';
 import Projects from './components/Projects';
 import Technologies from './components/Technologies';
 import WelcomeBlock from './components/WelcomeBlock';
-import Tetris from './components/AnimatedTetris';
+
+const DynamicAnimatedTetrisPiece = dynamic(
+  () => import('./components/AnimatedTetrisPiece'),
+  {
+    loading: () => null,
+  }
+);
+
+const TetrisBottomPieces = dynamic(
+  () => import('./components/TetrisBottomPieces'),
+  {
+    loading: () => <div />,
+  }
+);
+
+const Tetris = dynamic(() => import('./components/AnimatedTetris'), {
+  loading: () => <div />,
+});
 
 export default function Home() {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -121,21 +135,7 @@ export default function Home() {
     scrollbarRef.current.scrollIntoView(el.current);
   }, []);
 
-  const mainTetrisPieceRef = useRef();
-  const mainTetrisPieceMobileRef = useRef();
-  const mainTetrisPieceTabletRef = useRef();
   const bottomRef = useRef();
-
-  useEffect(() => {
-    gsap.registerPlugin(ScrollTrigger);
-
-    ScrollTrigger.saveStyles([
-      mainTetrisPieceRef.current,
-      mainTetrisPieceMobileRef.current,
-      mainTetrisPieceTabletRef.current,
-      bottomRef.current,
-    ]);
-  }, []);
 
   return (
     <div ref={containerRef} className='h-screen overflow-hidden'>
@@ -158,29 +158,7 @@ export default function Home() {
                   <Projects ref={projectsRef} />
                   <Technologies ref={technologiesRef} />
                   <Contacts ref={contactsRef} />
-                  <TetrisPiece
-                    className='!absolute -top-[50vh] right-[60px] hidden rotate-90 opacity-0 xl:flex'
-                    size='md'
-                    variant='Z'
-                    color='red'
-                    id='mainTetrisPiece'
-                  />
-
-                  <TetrisPiece
-                    className='!absolute right-[20px] top-0 sm:hidden'
-                    size='md'
-                    variant='L'
-                    color='red'
-                    id='mainTetrisPieceMobile'
-                  />
-
-                  <TetrisPiece
-                    className='!absolute right-[120px] top-0 hidden rotate-180 sm:flex xl:hidden'
-                    size='md'
-                    variant='J'
-                    color='red'
-                    id='mainTetrisPieceTablet'
-                  />
+                  <DynamicAnimatedTetrisPiece />
                   <div id='spacer' className='h-[300px]' />
                 </div>
 
